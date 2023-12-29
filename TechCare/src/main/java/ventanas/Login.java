@@ -379,7 +379,7 @@ public class Login extends javax.swing.JFrame {
     }//GEN-LAST:event_labelAccederMouseClicked
 
     private void labelRegistrarseMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_labelRegistrarseMousePressed
-        // Hacer new RegistrarAdministrador().setVisible(true);
+        new RegistrarAdministrador().setVisible(true);
         this.dispose();
     }//GEN-LAST:event_labelRegistrarseMousePressed
 
