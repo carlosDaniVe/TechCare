@@ -160,9 +160,9 @@ public class RegistrarAdministrador extends javax.swing.JFrame {
         jPanel1.add(panelRegistar, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 530, 380, 90));
 
         tituloNuevoUsuario.setForeground(new java.awt.Color(51, 51, 51));
-        tituloNuevoUsuario.setText("Registro de Nuevo Usuario");
+        tituloNuevoUsuario.setText("Registro de Nuevo Administrador");
         tituloNuevoUsuario.setFont(new java.awt.Font("Segoe UI", 1, 28)); // NOI18N
-        jPanel1.add(tituloNuevoUsuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 50, 370, 60));
+        jPanel1.add(tituloNuevoUsuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 50, 460, 60));
 
         panelSuperior.setBackground(new java.awt.Color(0, 74, 173));
         panelSuperior.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
