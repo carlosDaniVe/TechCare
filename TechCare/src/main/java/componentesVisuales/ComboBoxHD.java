@@ -15,7 +15,7 @@ public class ComboBoxHD extends JComboBox {
         g2d.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
         g2d.setRenderingHint(RenderingHints.KEY_RENDERING, RenderingHints.VALUE_RENDER_QUALITY);
         super.paintComponent(g2d);
-        g2d.dispose();
+       // g2d.dispose();
     }
   
 }

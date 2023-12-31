@@ -19,17 +19,16 @@ import componentesVisuales.TextFieldRedondeado;
  */
 public class RegistrarAdministrador extends javax.swing.JFrame {
 
-     List<TextFieldRedondeado> elementos= new ArrayList<>();
-     int xmouse, ymouse;
-    
-    
+    List<TextFieldRedondeado> elementos = new ArrayList<>();
+    int xmouse, ymouse;
+
     public RegistrarAdministrador() {
         initComponents();
         this.setLocationRelativeTo(null);
         llenarElementos();
-        
+
     }
-    
+
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -288,7 +287,7 @@ public class RegistrarAdministrador extends javax.swing.JFrame {
 
     private void txtTelefonoMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtTelefonoMousePressed
 
-        PlaceHonder.placeHolderUser(elementos, passtxt,4);
+        PlaceHonder.placeHolderUser(elementos, passtxt, 4);
 
     }//GEN-LAST:event_txtTelefonoMousePressed
 
@@ -314,51 +313,52 @@ public class RegistrarAdministrador extends javax.swing.JFrame {
 
     private void labelRegistrarMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_labelRegistrarMousePressed
 
-        if(Validar.validarUsuarios(elementos, passtxt, null, null)){
+        if (Validar.validarUsuarios(elementos, passtxt, null, null)) {
             String nombre = txtNombre.getText().trim();
             String cedula = txtCedula.getText().trim();
             String correo = txtCorreo.getText().trim();
             String telefono = txtTelefono.getText().trim();
             String usuario = txtUsuario.getText().trim();
             String contraseña = String.valueOf(passtxt.getPassword());
-            String permiso = "1";
-            String estatus = "1";
+            String permiso = "Administrador";
+            String estatus = "Activo";
             String registrado = txtUsuario.getText().trim();
-            
-             try {
-            Connection conexion = Conectar.conectar();
-            PreparedStatement ps = conexion.prepareStatement("insert into usuarios values(?,?,?,?,?,?,?,?,?)");
-            
-            ps.setString(1, nombre);
-            ps.setString(2, cedula);
-            ps.setString(3, correo);
-            ps.setString(4, telefono);
-            ps.setString(5, usuario);
-            ps.setString(6, contraseña);
-            ps.setString(7, permiso);
-            ps.setString(8, estatus);
-            ps.setString(9, registrado);
-            
-            int resultado = ps.executeUpdate();
-            if (resultado > 0) {
-                JOptionPane.showMessageDialog(null, "Registro exitoso");
+
+            try {
+                Connection conexion = Conectar.conectar();
+                PreparedStatement ps = conexion.prepareStatement("insert into usuarios values(?,?,?,?,?,?,?,?,?,?)");
+
+                ps.setString(1, nombre);
+                ps.setString(2, cedula);
+                ps.setString(3, correo);
+                ps.setString(4, telefono);
+                ps.setString(5, usuario);
+                ps.setString(6, contraseña);
+                ps.setString(7, permiso);
+                ps.setString(8, estatus);
+                ps.setString(9, registrado);
+                ps.setString(10, "Sin Historial");
+
+                int resultado = ps.executeUpdate();
+                if (resultado > 0) {
+                    JOptionPane.showMessageDialog(null, "Registro exitoso");
+                }
+
+                conexion.close();
+                ps.close();
+
+            } catch (SQLException e) {
+                System.out.println("Error en Boton registrar de la clase RegistrarAdministrador: " + e);
             }
 
-            conexion.close();
-            ps.close();
-
-        } catch (SQLException e) {
-            System.out.println("Error en Boton registrar de la clase RegistrarAdministrador: " + e);
-        }
-           
             this.dispose();
             new Login().setVisible(true);
-            
+
         }
 
     }//GEN-LAST:event_labelRegistrarMousePressed
 
-    
+
     private void labelSalir1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_labelSalir1MouseClicked
         this.dispose();
         new Login().setVisible(true);
@@ -457,7 +457,7 @@ public class RegistrarAdministrador extends javax.swing.JFrame {
     private void llevarLista(List<String> lista, String nombre, String cedula,
             String correo, String telefono, String usuario, String contraseña,
             String permiso, String estatus, String registrado) {
-        
+
         lista.add(nombre);
         lista.add(cedula);
         lista.add(correo);
@@ -468,13 +468,14 @@ public class RegistrarAdministrador extends javax.swing.JFrame {
         lista.add(estatus);
         lista.add(registrado);
     }
-    private void llenarElementos(){
+
+    private void llenarElementos() {
         elementos.add(txtNombre);
         elementos.add(txtCedula);
         elementos.add(txtCorreo);
         elementos.add(txtTelefono);
-        elementos.add(txtUsuario); 
-   
+        elementos.add(txtUsuario);
+
     }
 
 }

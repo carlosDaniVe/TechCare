@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<Form version="1.3" maxVersion="1.9" type="org.netbeans.modules.form.forminfo.JPanelFormInfo">
+  <Properties>
+    <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+      <Color blue="ff" green="ff" red="ff" type="rgb"/>
+    </Property>
+  </Properties>
+  <AuxValues>
+    <AuxValue name="FormSettings_autoResourcing" type="java.lang.Integer" value="0"/>
+    <AuxValue name="FormSettings_autoSetComponentName" type="java.lang.Boolean" value="false"/>
+    <AuxValue name="FormSettings_generateFQN" type="java.lang.Boolean" value="true"/>
+    <AuxValue name="FormSettings_generateMnemonicsCode" type="java.lang.Boolean" value="false"/>
+    <AuxValue name="FormSettings_i18nAutoMode" type="java.lang.Boolean" value="false"/>
+    <AuxValue name="FormSettings_layoutCodeTarget" type="java.lang.Integer" value="1"/>
+    <AuxValue name="FormSettings_listenerGenerationStyle" type="java.lang.Integer" value="0"/>
+    <AuxValue name="FormSettings_variablesLocal" type="java.lang.Boolean" value="false"/>
+    <AuxValue name="FormSettings_variablesModifier" type="java.lang.Integer" value="2"/>
+  </AuxValues>
+
+  <Layout>
+    <DimensionLayout dim="0">
+      <Group type="103" groupAlignment="0" attributes="0">
+          <Group type="102" attributes="0">
+              <EmptySpace min="-2" pref="15" max="-2" attributes="0"/>
+              <Component id="sp" pref="990" max="32767" attributes="0"/>
+              <EmptySpace min="-2" pref="15" max="-2" attributes="0"/>
+          </Group>
+      </Group>
+    </DimensionLayout>
+    <DimensionLayout dim="1">
+      <Group type="103" groupAlignment="0" attributes="0">
+          <Group type="102" alignment="0" attributes="0">
+              <EmptySpace min="-2" pref="31" max="-2" attributes="0"/>
+              <Component id="sp" min="-2" pref="601" max="-2" attributes="0"/>
+              <EmptySpace pref="28" max="32767" attributes="0"/>
+          </Group>
+      </Group>
+    </DimensionLayout>
+  </Layout>
+  <SubComponents>
+    <Container class="javax.swing.JScrollPane" name="sp">
+      <AuxValues>
+        <AuxValue name="autoScrollPane" type="java.lang.Boolean" value="true"/>
+      </AuxValues>
+
+      <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
+      <SubComponents>
+        <Component class="javax.swing.JTextArea" name="txaAcercade">
+          <Properties>
+            <Property name="columns" type="int" value="20"/>
+            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+              <Font name="Segoe UI" size="18" style="0"/>
+            </Property>
+            <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+              <Color blue="33" green="33" red="33" type="rgb"/>
+            </Property>
+            <Property name="rows" type="int" value="5"/>
+            <Property name="text" type="java.lang.String" value="                                                                                      ACERCA DE TECHCARE&#xa;     NOMBRE DE LA APPLICACION:&#xa;          TechCare&#xa;&#xa;     VERSION:&#xa;          1.0&#xa;&#xa;     DESCRIPCION DE LA APLICACION:&#xa;          TechCare es una aplicaci&#xf3;n dise&#xf1;ada para empresas dedicadas a la reparaci&#xf3;n de equipos tecnol&#xf3;gicos como&#xa;          computadoras, celulares, tablets y otros. Esta aplicaci&#xf3;n permite registrar y gestionar clientes, usuarios y equipos. &#xa;          Cuenta con tres niveles de permisos y privilegios: Administrador, Capturista y T&#xe9;cnico.&#xa;&#xa;                    &#x2022;ADMINISTRADOR: Tiene acceso total al sistema, puede registrar y gestionar usuarios, clientes y equipos.&#xa;                    &#x2022;CAPTURISTA: Puede registrar y gestionar la informaci&#xf3;n de los clientes y los equipos.&#xa;                    &#x2022;TECNICO: Encargado de revisar y reparar los equipos, puede gestionar y modificar la informaci&#xf3;n de los&#xa;                     equipos. Adem&#xe1;s, tiene a su disposici&#xf3;n gr&#xe1;ficas que muestran informaci&#xf3;n importante.&#xa;&#xa;    DERECHOS DE AUTOR:&#xa;        TechCare &#xa9; 2023. Todos los derechos reservados.&#xa;&#xa;   TERMINOS DE SERVICIOS Y POLITICAS DE PRIVACIDAD:&#xa;        La aplicaci&#xf3;n es de uso p&#xfa;blico y no comercial. No se puede vender ni comercializar, pero puede ser utilizada por &#xa;        personas  que se dedican a reparar equipos. No se puede modificar por terceros. Si se necesita una modificaci&#xf3;n,&#xa;        se debe contactar al  desarrollador con una explicaci&#xf3;n detallada y clara de la modificaci&#xf3;n o mejora que se &#xa;        quiere incluir.&#xa;&#xa;    INFORMACION DE CONTACTO  DEL DESARROLLADOR:&#xa;             &#x2022;Correo Electr&#xf3;nico:           profesionalengineer123@gmail.com&#xa;             &#x2022;WhatsApp y Telegram:    +584129345420&#xa;             &#x2022;LinkedIn:                          Carlos Daniel Hern&#xe1;ndez Duran&#xa;                             ( https://www.linkedin.com/in/carlos-daniel-hern%C3%A1ndez-duran-248b52213 )&#xa;            &#x2022; &#xa;&#xa;    CREDITOS:&#xa;       Iconos gr&#xe1;ficos obtenidos de Flaticon.com&#xa;"/>
+          </Properties>
+        </Component>
+      </SubComponents>
+    </Container>
+  </SubComponents>
+</Form>

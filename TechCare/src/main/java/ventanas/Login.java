@@ -1,6 +1,7 @@
 package ventanas;
 
 import clases.Conectar;
+import clases.Fechas;
 import clases.PlaceHonder;
 import clases.Validar;
 import java.awt.Color;
@@ -20,19 +21,14 @@ import javax.swing.JOptionPane;
  */
 public class Login extends javax.swing.JFrame {
 
-    public static int año, mes, dia;
-    public static String user;
+    public static String user, ultimoIngreso1;
     int xMouse, yMouse;
 
     public Login() {
         initComponents();
         setLocationRelativeTo(null);
 
-        dia = Login.obtenerFecha(1);
-        mes = Login.obtenerFecha(2);
-        año = Login.obtenerFecha(3);
-
-        labelFoot.setText("TechCare® " + año);
+        labelFoot.setText("TechCare® " + Fechas.fechaDiaMesAñoHora(3));
         labelAcceder.setCursor(new Cursor(Cursor.HAND_CURSOR));
         labelRegistrarse.setCursor(new Cursor(Cursor.HAND_CURSOR));
 
@@ -40,7 +36,7 @@ public class Login extends javax.swing.JFrame {
             Connection cn = Conectar.conectar();
             PreparedStatement psr = cn.prepareStatement(
                     "SELECT COUNT(*) FROM usuarios WHERE "
-                    + "nivel = '1' AND estatus = '1'");
+                    + "nivel = 'Administrador' AND estatus = 'Activo'");
 
             ResultSet rsr = psr.executeQuery();
 
@@ -50,20 +46,28 @@ public class Login extends javax.swing.JFrame {
                 if (c > 0) {
                     labelRegistrarse.setEnabled(false);
                     labelRegistrarse.setText("");
-                    
+                    cn.close();
+                    psr.close();
+                    rsr.close();
+
                 } else {
                     labelRegistrarse.setEnabled(true);
                     labelRegistrarse.setText("Registrarse");
-                    
+                    cn.close();
+                    psr.close();
+                    rsr.close();
                 }
-                
+
             } else {
                 labelRegistrarse.setEnabled(true);
                 labelRegistrarse.setText("Registrarse");
-                
+                cn.close();
+                psr.close();
+                rsr.close();
             }
-            
+
             cn.close();
+            psr.close();
             rsr.close();
 
         } catch (SQLException e) {
@@ -322,7 +326,27 @@ public class Login extends javax.swing.JFrame {
         if (Validar.validarLogin(txtUserLogin, txtPassLogin)) {
             user = txtUserLogin.getText();
             String password = String.valueOf(txtPassLogin.getPassword());
+             
+            try {
+                Connection cn = Conectar.conectar();
+                PreparedStatement ps = cn.prepareStatement(
+                        "select ultimoIngreso from usuarios where username = ?");
 
+                ps.setString(1, user);
+                ResultSet rs = ps.executeQuery();
+
+                if (rs.next()) {
+                    ultimoIngreso1 = rs.getString("ultimoIngreso");
+                    cn.close();
+                    ps.close();
+                    rs.close();
+                }
+
+            } catch (SQLException e) {
+                System.out.println("Error en consultar Ultima sesion " + e);
+                System.out.println("Clase Administador");
+            }
+             
             try {
                 Connection conexion = Conectar.conectar();
                 PreparedStatement ps = conexion.prepareStatement("select nivel,"
@@ -337,36 +361,38 @@ public class Login extends javax.swing.JFrame {
                     String permiso = resultados.getString("nivel");
                     String estatus = resultados.getString("estatus");
 
-                    if (permiso.equals("1")) {
-                        
-                        if (estatus.equals("1")) {
-                            
-                            // Hacer new Administrador().setVisible(true);
+                    conexion.close();
+                    ps.close();
+                    resultados.close();
+
+                    if (permiso.equals("Administrador")) {
+
+                        if (estatus.equals("Activo")) {
+
+                            new Administrador().setVisible(true);
+                            this.dispose();
+
                         } else {
                             JOptionPane.showMessageDialog(null, "Usuario inactivo");
                         }
-                        
-                    } else if (permiso.equals("2")) {
-                        
-                        if (estatus.equals("1")) {
+
+                    } else if (permiso.equals("Capturista")) {
+
+                        if (estatus.equals("Activo")) {
                             //Hacer new Capturista().setVisible(true);
                         } else {
                             JOptionPane.showMessageDialog(null, "Usuario inactivo");
                         }
-                        
-                    } else if (permiso.equals("3")) {
-                        
-                        if (estatus.equals("1")) {
+
+                    } else if (permiso.equals("Tecnico")) {
+
+                        if (estatus.equals("Activo")) {
                             //Hacer new Tecnico().setVisible(true);
                         } else {
                             JOptionPane.showMessageDialog(null, "Usuario inactivo");
                         }
                     }
                     
-                    this.dispose();
-                    conexion.close();
-                    resultados.close();
-
                 } else {
                     JOptionPane.showMessageDialog(null, "Incorrecto");
                 }
@@ -435,25 +461,5 @@ public class Login extends javax.swing.JFrame {
     private componentesVisuales.PasswordField txtPassLogin;
     private componentesVisuales.TextFieldRedondeado txtUserLogin;
     // End of variables declaration//GEN-END:variables
-
-    // Metodo para Obtener la fecha actual
-    public static int obtenerFecha(int i) {
-        LocalDate fechaActual = LocalDate.now();
-        switch (i) {
-            case 1 -> {
-                int dia2 = fechaActual.getDayOfMonth();
-                return dia2;
-            }
-            case 2 -> {
-                int mes2 = fechaActual.getMonthValue();
-                return mes2;
-            }
-            default -> {
-                int año2 = fechaActual.getYear();
-                return año2;
-            }
-        }
-
-    }
 
 }
