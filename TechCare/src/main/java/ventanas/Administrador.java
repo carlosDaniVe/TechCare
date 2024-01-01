@@ -20,7 +20,7 @@ import ventanas.paneles.RegistroDeUsuarios;
 
 /**
  *
- * @author Carlos
+ * @author Carlos Hernandez
  */
 public class Administrador extends javax.swing.JFrame {
 
@@ -35,7 +35,6 @@ public class Administrador extends javax.swing.JFrame {
         usuario = Login.user;
         labelBienvanida.setText("Bienvenido: " + usuario);
         banerInferior.setText("TechCare® " + Fechas.fechaDiaMesAñoHora(3));
-        banerInferior.repaint();
         Mostrar.mostrarPanel(PanelPadre, new PanelPadre2Admin());
         lFechaActual.setText("Hoy es: " + Fechas.fechaDiaMesAñoHora(1) + " | ");
 
@@ -732,17 +731,17 @@ public class Administrador extends javax.swing.JFrame {
     }//GEN-LAST:event_lCapturistaMouseEntered
 
     private void lCapturistaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lCapturistaMouseClicked
-        // ----> Crear JFrameForm Capturista e Implementar :
-        /*        Capturista capturista = new Capturista();
-        *          capturista.setVisible(true);
-         */
+
+        Capturista capturista = new Capturista();
+        capturista.setVisible(true);
+
     }//GEN-LAST:event_lCapturistaMouseClicked
 
     private void gestionarUsuariosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_gestionarUsuariosMouseClicked
-        // ----> Crear JFrameForm Capturista e Implementar :
-        /*        Capturista capturista = new Capturista();
-        *          capturista.setVisible(true);
-         */
+
+        Capturista capturista = new Capturista();
+        capturista.setVisible(true);
+
     }//GEN-LAST:event_gestionarUsuariosMouseClicked
 
     private void lGestionarIcMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lGestionarIcMouseExited

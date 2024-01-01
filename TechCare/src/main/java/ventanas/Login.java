@@ -11,7 +11,6 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.time.LocalDate;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 
@@ -326,8 +325,8 @@ public class Login extends javax.swing.JFrame {
         if (Validar.validarLogin(txtUserLogin, txtPassLogin)) {
             user = txtUserLogin.getText();
             String password = String.valueOf(txtPassLogin.getPassword());
-             
-            try {
+            
+             try {
                 Connection cn = Conectar.conectar();
                 PreparedStatement ps = cn.prepareStatement(
                         "select ultimoIngreso from usuarios where username = ?");
@@ -368,7 +367,7 @@ public class Login extends javax.swing.JFrame {
                     if (permiso.equals("Administrador")) {
 
                         if (estatus.equals("Activo")) {
-
+                            
                             new Administrador().setVisible(true);
                             this.dispose();
 
@@ -379,7 +378,7 @@ public class Login extends javax.swing.JFrame {
                     } else if (permiso.equals("Capturista")) {
 
                         if (estatus.equals("Activo")) {
-                            //Hacer new Capturista().setVisible(true);
+                             new Capturista().setVisible(true);
                         } else {
                             JOptionPane.showMessageDialog(null, "Usuario inactivo");
                         }
