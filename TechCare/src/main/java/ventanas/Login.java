@@ -379,6 +379,7 @@ public class Login extends javax.swing.JFrame {
 
                         if (estatus.equals("Activo")) {
                              new Capturista().setVisible(true);
+                             this.dispose();
                         } else {
                             JOptionPane.showMessageDialog(null, "Usuario inactivo");
                         }

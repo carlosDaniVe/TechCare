@@ -14,6 +14,7 @@ import java.util.Date;
 import javax.swing.JFrame;
 import javax.swing.Timer;
 import ventanas.paneles.PanelPadre2Capturista;
+import ventanas.paneles.RegistrarCliente;
 
 /**
  *
@@ -430,6 +431,7 @@ public class Capturista extends javax.swing.JFrame {
 
     private void labelSalir1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_labelSalir1MouseClicked
         this.dispose();
+        new Login().setVisible(true);
     }//GEN-LAST:event_labelSalir1MouseClicked
 
     private void labelSalir1MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_labelSalir1MouseEntered
@@ -469,7 +471,8 @@ public class Capturista extends javax.swing.JFrame {
     }//GEN-LAST:event_panelSuperiorMousePressed
 
     private void panelRegistrarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_panelRegistrarMouseClicked
-        // --> Mostrar panel para Registrar Clientes aqui.
+        
+        Mostrar.mostrarPanel(panelPadre, new RegistrarCliente());
 
     }//GEN-LAST:event_panelRegistrarMouseClicked
 

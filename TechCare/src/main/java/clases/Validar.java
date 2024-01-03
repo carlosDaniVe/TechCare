@@ -123,4 +123,48 @@ public class Validar {
             return false;
         }
     }
+     
+     public static boolean validarClientes(List<TextFieldRedondeado> elementos) {
+        validador = 0;
+        if (elementos.get(0) != null) {
+            if (elementos.get(0).getText().equals("Ingrese el Nombre")
+                    || elementos.get(0).getText().isEmpty()) {
+                elementos.get(0).setForeground(Color.red);
+                elementos.get(0).setText("Ingrese el Nombre");
+                validador++;
+            }
+        }
+        if (elementos.get(1).getText().equals("Ingrese la Cedula")
+                || elementos.get(1).getText().isEmpty()) {
+            elementos.get(1).setForeground(Color.red);
+            elementos.get(1).setText("Ingrese la Cedula");
+            validador++;
+        }
+
+        if (elementos.get(2).getText().equals("Ingrese el Correo")
+                || elementos.get(2).getText().isEmpty()) {
+            elementos.get(2).setForeground(Color.red);
+            elementos.get(2).setText("Ingrese el Correo");
+            validador++;
+        }
+        if (elementos.get(3).getText().equals("Ingrese su Direccion")
+                || elementos.get(3).getText().isEmpty()) {
+            elementos.get(3).setForeground(Color.red);
+            elementos.get(3).setText("Ingrese su Direccion");
+            validador++;
+        }
+        if (elementos.get(4).getText().equals("Ingrese el Telefono")
+                || elementos.get(4).getText().isEmpty()) {
+            elementos.get(4).setForeground(Color.red);
+            elementos.get(4).setText("Ingrese el Telefono");
+            validador++;
+        }
+
+        if (validador != 0) {
+            return false;
+        } else {
+            return true;
+        }
+
+    }
 }
