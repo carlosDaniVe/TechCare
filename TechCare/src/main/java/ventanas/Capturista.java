@@ -2,6 +2,7 @@ package ventanas;
 
 import clases.Conectar;
 import clases.Fechas;
+import clases.Mostrar;
 import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -12,6 +13,7 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import javax.swing.JFrame;
 import javax.swing.Timer;
+import ventanas.paneles.PanelPadre2Capturista;
 
 /**
  *
@@ -61,7 +63,7 @@ public class Capturista extends javax.swing.JFrame {
         horaActual.setInitialDelay(0);
         horaActual.start();
 
-        // --> Mostrar panel principal aqui...
+        Mostrar.mostrarPanel(panelPadre, new PanelPadre2Capturista());
     }
 
     @SuppressWarnings("unchecked")
@@ -480,7 +482,8 @@ public class Capturista extends javax.swing.JFrame {
     }//GEN-LAST:event_imprimirMouseExited
 
     private void panelHomeMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_panelHomeMouseClicked
-        // --> Mostrar panel principal aqui...
+        
+        Mostrar.mostrarPanel(panelPadre, new PanelPadre2Capturista());
 
     }//GEN-LAST:event_panelHomeMouseClicked
 
