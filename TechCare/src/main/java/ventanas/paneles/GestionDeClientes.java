@@ -35,8 +35,8 @@ public class GestionDeClientes extends javax.swing.JPanel {
                 if (fila > -1) {
                     if (fila > -1) {
                         cedula = (String) tabla1.getModel().getValueAt(fila, columna);
-                        System.out.println(cedula);
-                        // --> Mostrar el panel para la informacion del cliente aqui
+                        Mostrar.mostrarPanel(Capturista.panelPadre, 
+                                new InformacionCliente());
                     }
 
                 }

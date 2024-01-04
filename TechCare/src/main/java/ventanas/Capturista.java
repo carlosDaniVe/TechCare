@@ -36,7 +36,7 @@ public class Capturista extends javax.swing.JFrame {
         labelBienvanida.setText("Bienvenido: " + usuario);
         lFechaActual.setText("Hoy es: " + Fechas.fechaDiaMesAñoHora(1) + " | ");
         ultimaSesion.setText("Su ultima sesion fue: " + ultimoIngreso);
-        
+
         try {
             Connection cn2 = Conectar.conectar();
             ultimoIngreso = Fechas.fechaDiaMesAñoHora(2);
@@ -472,7 +472,7 @@ public class Capturista extends javax.swing.JFrame {
     }//GEN-LAST:event_panelSuperiorMousePressed
 
     private void panelRegistrarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_panelRegistrarMouseClicked
-        
+
         Mostrar.mostrarPanel(panelPadre, new RegistrarCliente());
 
     }//GEN-LAST:event_panelRegistrarMouseClicked
@@ -486,7 +486,7 @@ public class Capturista extends javax.swing.JFrame {
     }//GEN-LAST:event_imprimirMouseExited
 
     private void panelHomeMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_panelHomeMouseClicked
-        
+
         Mostrar.mostrarPanel(panelPadre, new PanelPadre2Capturista());
 
     }//GEN-LAST:event_panelHomeMouseClicked
@@ -500,7 +500,7 @@ public class Capturista extends javax.swing.JFrame {
     }//GEN-LAST:event_panelHomeMouseExited
 
     private void gestionarTXTMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_gestionarTXTMousePressed
-        
+
         Mostrar.mostrarPanel(panelPadre, new GestionDeClientes());
 
     }//GEN-LAST:event_gestionarTXTMousePressed
@@ -522,8 +522,8 @@ public class Capturista extends javax.swing.JFrame {
     }//GEN-LAST:event_gestionarICOMouseExited
 
     private void gestionarICOMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_gestionarICOMousePressed
-        // --> Mostrar panel de gestionar clientes aqui...
 
+        Mostrar.mostrarPanel(panelPadre, new GestionDeClientes());
     }//GEN-LAST:event_gestionarICOMousePressed
 
     /**
