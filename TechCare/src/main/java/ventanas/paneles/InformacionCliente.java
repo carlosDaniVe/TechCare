@@ -1,6 +1,7 @@
 package ventanas.paneles;
 
 import clases.Conectar;
+import clases.Mostrar;
 import clases.PlaceHonder;
 import clases.Validar;
 import java.awt.Color;
@@ -20,7 +21,8 @@ import javax.swing.Timer;
 import javax.swing.table.DefaultTableModel;
 import componentesVisuales.ScrollBar;
 import componentesVisuales.TextFieldRedondeado;
-
+import ventanas.Capturista;
+import ventanas.RegistrarEquiposForm;
 
 /**
  *
@@ -32,14 +34,12 @@ public class InformacionCliente extends javax.swing.JPanel {
     public static String cedula, user, cliente;
     public static DefaultTableModel modelo;
     public static int id;
-   
 
     public InformacionCliente() {
         initComponents();
         sp.setVerticalScrollBar(new ScrollBar());
 
         cedula = GestionDeClientes.cedula;
-        
 
         try {
             Connection conexion = Conectar.conectar();
@@ -48,7 +48,7 @@ public class InformacionCliente extends javax.swing.JPanel {
                     "select * from clientes where cedula = '" + cedula + "'");
 
             ResultSet rsw = ps.executeQuery();
-            
+
             if (rsw.next()) {
                 txtCedula.setForeground(new Color(53, 53, 53));
                 txtCorreo.setForeground(new Color(53, 53, 53));
@@ -69,10 +69,10 @@ public class InformacionCliente extends javax.swing.JPanel {
         } catch (NumberFormatException | SQLException e) {
             System.out.println("Error en llenar campos en panel InformacionCliente: " + e);
         }
-        
+
         // Hilo para actualizar la Tabla
         modelo = llenerModelo(new DefaultTableModel());
-        
+
         actualizarTabla(modelo);
         Timer timer = new Timer(2000, new ActionListener() {
             @Override
@@ -81,7 +81,7 @@ public class InformacionCliente extends javax.swing.JPanel {
             }
         });
         timer.start();
-        
+
         tablaG.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
@@ -90,7 +90,8 @@ public class InformacionCliente extends javax.swing.JPanel {
 
                 if (fila > -1) {
                     id = (int) tablaG.getModel().getValueAt(fila, columna);
-// -----------------> Mostrar el panel para la informacion  del equipo aqui
+                    Mostrar.mostrarPanel(Capturista.panelPadre,
+                            new InformacionEquipos());
                 }
             }
         });
@@ -106,7 +107,6 @@ public class InformacionCliente extends javax.swing.JPanel {
 
     }
 
-    
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -330,7 +330,7 @@ public class InformacionCliente extends javax.swing.JPanel {
     }//GEN-LAST:event_lRegistrarEMouseExited
 
     private void lRegistrarEMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lRegistrarEMousePressed
-// ------> Mostrar el panel para registrar equipos
+        new RegistrarEquiposForm().setVisible(true);
     }//GEN-LAST:event_lRegistrarEMousePressed
 
     private void actualizarlMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_actualizarlMouseEntered
@@ -374,10 +374,9 @@ public class InformacionCliente extends javax.swing.JPanel {
             String correot = txtCorreo.getText().trim();
             String telefonot = txtTelefono.getText().trim();
             String direcciont = dirreccion.getText().trim();
-            
 
             try {
-                
+
                 Connection cn = Conectar.conectar();
                 PreparedStatement ps = cn.prepareStatement(
                         "update clientes set nombre = ?, cedula = ?, correo = ?,"
@@ -396,13 +395,12 @@ public class InformacionCliente extends javax.swing.JPanel {
 
                 cn.close();
                 ps.close();
-                
-                
+
                 Connection cn2 = Conectar.conectar();
                 PreparedStatement ps2 = cn2.prepareStatement(
                         "update equipos set cedulaCliente = ? where cedulaCliente = '" + cedula + "'");
                 ps2.setString(1, cedulat);
-                
+
                 int resultado2 = ps2.executeUpdate();
                 if (resultado > 0 && resultado2 > 0) {
                     JOptionPane.showMessageDialog(null, "Exitoso");
@@ -449,11 +447,11 @@ public class InformacionCliente extends javax.swing.JPanel {
     }
 
     public void actualizarTabla(DefaultTableModel modelo) {
-        
+
         modelo.setRowCount(0);
 
         try {
-            
+
             Connection conexion = Conectar.conectar();
             PreparedStatement ps = conexion.prepareStatement(
                     "select tipo, marca, estatus, id from equipos where cedulaCliente = ?");

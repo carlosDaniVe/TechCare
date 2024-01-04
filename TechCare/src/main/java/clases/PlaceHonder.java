@@ -342,4 +342,28 @@ public class PlaceHonder {
 
         }
     }
+    
+    public static void placeHolderEquipos(List<TextFieldRedondeado> elemento,
+            int seleccion) {
+        if (seleccion == 1) {
+            if (elemento.get(0).getText().equals("Modelo")) {
+                elemento.get(0).setText("");
+                elemento.get(0).setForeground(new Color(53, 53, 53));
+            }
+            if (elemento.get(1).getText().isEmpty()) {
+                elemento.get(1).setText("Numero de Serie");
+                elemento.get(1).setForeground(new Color(153, 153, 153));
+            }
+        } else if (seleccion == 2) {
+            if (elemento.get(0).getText().isEmpty()) {
+                elemento.get(0).setText("Modelo");
+                elemento.get(0).setForeground(new Color(153, 153, 153));
+            }
+            if (elemento.get(1).getText().equals("Numero de Serie")) {
+                elemento.get(1).setText("");
+                elemento.get(1).setForeground(new Color(53, 53, 53));
+            }
+        }
+    }
+
 }

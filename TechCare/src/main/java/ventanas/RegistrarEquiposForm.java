@@ -1,14 +1,10 @@
 package ventanas;
 
-import clases.Conectar;
 import clases.Fechas;
 import clases.Mostrar;
 import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.SQLException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import javax.swing.JFrame;
@@ -17,43 +13,27 @@ import ventanas.paneles.GestionDeClientes;
 import ventanas.paneles.PanelPadre2Capturista;
 import ventanas.paneles.RegistrarCliente;
 
+
 /**
  *
  * @author Carlos Hernandez
  */
-public class Capturista extends javax.swing.JFrame {
+public class RegistrarEquiposForm extends javax.swing.JFrame {
 
     int xmouse, ymouse;
     String usuario, ultimoIngreso;
-
-    public Capturista() {
+    
+    public RegistrarEquiposForm() {
         initComponents();
         this.setLocationRelativeTo(null);
-        this.setResizable(false);
-
+        
         usuario = Login.user;
         ultimoIngreso = Login.ultimoIngreso1;
+        Mostrar.mostrarPanel(panelPadre, new ventanas.paneles.RegistrarEquipos());
         labelBienvanida.setText("Bienvenido: " + usuario);
         lFechaActual.setText("Hoy es: " + Fechas.fechaDiaMesAñoHora(1) + " | ");
         ultimaSesion.setText("Su ultima sesion fue: " + ultimoIngreso);
-
-        try {
-            Connection cn2 = Conectar.conectar();
-            ultimoIngreso = Fechas.fechaDiaMesAñoHora(2);
-            PreparedStatement ps2 = cn2.prepareStatement(
-                    "UPDATE usuarios SET ultimoIngreso = ? WHERE username = ?");
-
-            ps2.setString(1, ultimoIngreso);
-            ps2.setString(2, usuario);
-            ps2.executeUpdate();
-
-            cn2.close();
-            ps2.close();
-
-        } catch (SQLException e) {
-            System.out.println("Error actualizar fecha " + e);
-        }
-
+        
         Timer horaActual = new Timer(1000, new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -64,10 +44,9 @@ public class Capturista extends javax.swing.JFrame {
         horaActual.setCoalesce(true);
         horaActual.setInitialDelay(0);
         horaActual.start();
-
-        Mostrar.mostrarPanel(panelPadre, new PanelPadre2Capturista());
     }
 
+    
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -75,21 +54,18 @@ public class Capturista extends javax.swing.JFrame {
         panelFondo = new javax.swing.JPanel();
         panelIzquierdo = new javax.swing.JPanel();
         labelLogo = new componentesVisuales.LabelAltaDefinicion();
-        imprimir = new javax.swing.JPanel();
-        imprimirTXT = new componentesVisuales.LabelAltaDefinicion();
-        imprimirICO = new componentesVisuales.LabelAltaDefinicion();
-        panelRegistrar = new javax.swing.JPanel();
-        registarICO = new componentesVisuales.LabelAltaDefinicion();
-        labelAltaDefinicion1 = new componentesVisuales.LabelAltaDefinicion();
+        panelNuevoTipo = new javax.swing.JPanel();
+        agregarTipo = new componentesVisuales.LabelAltaDefinicion();
+        agregarTipoICO = new componentesVisuales.LabelAltaDefinicion();
         lBaner = new componentesVisuales.LabelAltaDefinicion();
         banerInferior = new componentesVisuales.LabelAltaDefinicion();
         bannerInferior2 = new componentesVisuales.LabelAltaDefinicion();
+        agregarMarcaP = new javax.swing.JPanel();
+        agregarMarcaICO = new componentesVisuales.LabelAltaDefinicion();
+        agregarMarca = new componentesVisuales.LabelAltaDefinicion();
         panelHome = new javax.swing.JPanel();
         principal = new componentesVisuales.LabelAltaDefinicion();
         labelAltaDefinicion2 = new componentesVisuales.LabelAltaDefinicion();
-        panelGestionClientes = new javax.swing.JPanel();
-        gestionarICO = new componentesVisuales.LabelAltaDefinicion();
-        gestionarTXT = new componentesVisuales.LabelAltaDefinicion();
         PanelTituloB = new javax.swing.JPanel();
         labelBienvanida = new componentesVisuales.LabelAltaDefinicion();
         ultimaSesion = new componentesVisuales.LabelAltaDefinicion();
@@ -114,55 +90,52 @@ public class Capturista extends javax.swing.JFrame {
         labelLogo.setIcono(new javax.swing.ImageIcon(getClass().getResource("/LOGO2.png"))); // NOI18N
         panelIzquierdo.add(labelLogo, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 20, 141, 141));
 
-        imprimir.setBackground(new java.awt.Color(0, 73, 173));
-        imprimir.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseEntered(java.awt.event.MouseEvent evt) {
-                imprimirMouseEntered(evt);
-            }
-            public void mouseExited(java.awt.event.MouseEvent evt) {
-                imprimirMouseExited(evt);
-            }
-            public void mousePressed(java.awt.event.MouseEvent evt) {
-                imprimirMousePressed(evt);
-            }
-        });
-        imprimir.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
-        imprimirTXT.setForeground(new java.awt.Color(255, 255, 255));
-        imprimirTXT.setText("     Imprimir Clientes");
-        imprimirTXT.setFont(new java.awt.Font("Segoe UI", 1, 16)); // NOI18N
-        imprimir.add(imprimirTXT, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 0, 180, 70));
-
-        imprimirICO.setIcono(new javax.swing.ImageIcon(getClass().getResource("/print.png"))); // NOI18N
-        imprimir.add(imprimirICO, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 50, 50));
-
-        panelIzquierdo.add(imprimir, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 420, 230, 71));
-
-        panelRegistrar.setBackground(new java.awt.Color(0, 73, 173));
-        panelRegistrar.setPreferredSize(new java.awt.Dimension(210, 70));
-        panelRegistrar.addMouseListener(new java.awt.event.MouseAdapter() {
+        panelNuevoTipo.setBackground(new java.awt.Color(0, 73, 173));
+        panelNuevoTipo.setPreferredSize(new java.awt.Dimension(210, 70));
+        panelNuevoTipo.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                panelRegistrarMouseClicked(evt);
+                panelNuevoTipoMouseClicked(evt);
             }
             public void mouseEntered(java.awt.event.MouseEvent evt) {
-                panelRegistrarMouseEntered(evt);
+                panelNuevoTipoMouseEntered(evt);
             }
             public void mouseExited(java.awt.event.MouseEvent evt) {
-                panelRegistrarMouseExited(evt);
+                panelNuevoTipoMouseExited(evt);
             }
         });
-        panelRegistrar.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        panelNuevoTipo.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        registarICO.setIcono(new javax.swing.ImageIcon(getClass().getResource("/user-addlist.png"))); // NOI18N
-        panelRegistrar.add(registarICO, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 50, 50));
+        agregarTipo.setForeground(new java.awt.Color(255, 255, 255));
+        agregarTipo.setText("     Agregar Nuevo Tipo");
+        agregarTipo.setFont(new java.awt.Font("Segoe UI", 1, 15)); // NOI18N
+        agregarTipo.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                agregarTipoMouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                agregarTipoMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                agregarTipoMouseExited(evt);
+            }
+        });
+        panelNuevoTipo.add(agregarTipo, new org.netbeans.lib.awtextra.AbsoluteConstraints(49, 0, 180, 70));
 
-        labelAltaDefinicion1.setForeground(new java.awt.Color(255, 255, 255));
-        labelAltaDefinicion1.setText("    Registrar Clientes");
-        labelAltaDefinicion1.setFont(new java.awt.Font("Segoe UI", 1, 16)); // NOI18N
-        panelRegistrar.add(labelAltaDefinicion1, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 0, 180, 70));
-        labelAltaDefinicion1.getAccessibleContext().setAccessibleName("     Registrar Clientes");
+        agregarTipoICO.setIcono(new javax.swing.ImageIcon(getClass().getResource("/user-addlist.png"))); // NOI18N
+        agregarTipoICO.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                agregarTipoICOMouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                agregarTipoICOMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                agregarTipoICOMouseExited(evt);
+            }
+        });
+        panelNuevoTipo.add(agregarTipoICO, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 50, 50));
 
-        panelIzquierdo.add(panelRegistrar, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 280, 230, 70));
+        panelIzquierdo.add(panelNuevoTipo, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 280, 230, 70));
 
         lBaner.setForeground(new java.awt.Color(255, 255, 255));
         lBaner.setText("TechCare®");
@@ -179,6 +152,54 @@ public class Capturista extends javax.swing.JFrame {
         bannerInferior2.setText("System");
         bannerInferior2.setFont(new java.awt.Font("Segoe UI", 3, 50)); // NOI18N
         panelIzquierdo.add(bannerInferior2, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 720, 170, -1));
+
+        agregarMarcaP.setBackground(new java.awt.Color(0, 73, 173));
+        agregarMarcaP.setFont(new java.awt.Font("Segoe UI", 1, 16)); // NOI18N
+        agregarMarcaP.setPreferredSize(new java.awt.Dimension(210, 70));
+        agregarMarcaP.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                agregarMarcaPMouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                agregarMarcaPMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                agregarMarcaPMouseExited(evt);
+            }
+        });
+        agregarMarcaP.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        agregarMarcaICO.setIcono(new javax.swing.ImageIcon(getClass().getResource("/gestionUsers.png"))); // NOI18N
+        agregarMarcaICO.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                agregarMarcaICOMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                agregarMarcaICOMouseExited(evt);
+            }
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                agregarMarcaICOMousePressed(evt);
+            }
+        });
+        agregarMarcaP.add(agregarMarcaICO, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 50, 50));
+
+        agregarMarca.setForeground(new java.awt.Color(255, 255, 255));
+        agregarMarca.setText("    Agregar Marca");
+        agregarMarca.setFont(new java.awt.Font("Segoe UI", 1, 16)); // NOI18N
+        agregarMarca.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                agregarMarcaMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                agregarMarcaMouseExited(evt);
+            }
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                agregarMarcaMousePressed(evt);
+            }
+        });
+        agregarMarcaP.add(agregarMarca, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 0, 180, 70));
+
+        panelIzquierdo.add(agregarMarcaP, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 347, 230, 70));
 
         panelHome.setBackground(new java.awt.Color(0, 74, 173));
         panelHome.setPreferredSize(new java.awt.Dimension(210, 70));
@@ -198,47 +219,34 @@ public class Capturista extends javax.swing.JFrame {
         principal.setForeground(new java.awt.Color(255, 255, 255));
         principal.setText("   Principal");
         principal.setFont(new java.awt.Font("Segoe UI", 1, 16)); // NOI18N
+        principal.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                principalMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                principalMouseExited(evt);
+            }
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                principalMousePressed(evt);
+            }
+        });
         panelHome.add(principal, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 8, 170, 60));
 
         labelAltaDefinicion2.setIcono(new javax.swing.ImageIcon(getClass().getResource("/home.png"))); // NOI18N
+        labelAltaDefinicion2.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                labelAltaDefinicion2MouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                labelAltaDefinicion2MouseExited(evt);
+            }
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                labelAltaDefinicion2MousePressed(evt);
+            }
+        });
         panelHome.add(labelAltaDefinicion2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 50, 50));
 
         panelIzquierdo.add(panelHome, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 208, 230, 70));
-
-        panelGestionClientes.setBackground(new java.awt.Color(0, 73, 173));
-        panelGestionClientes.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
-        gestionarICO.setIcono(new javax.swing.ImageIcon(getClass().getResource("/gestionUsers.png"))); // NOI18N
-        gestionarICO.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseEntered(java.awt.event.MouseEvent evt) {
-                gestionarICOMouseEntered(evt);
-            }
-            public void mouseExited(java.awt.event.MouseEvent evt) {
-                gestionarICOMouseExited(evt);
-            }
-            public void mousePressed(java.awt.event.MouseEvent evt) {
-                gestionarICOMousePressed(evt);
-            }
-        });
-        panelGestionClientes.add(gestionarICO, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 50, 50));
-
-        gestionarTXT.setForeground(new java.awt.Color(255, 255, 255));
-        gestionarTXT.setText("    Gestionar Clientes");
-        gestionarTXT.setFont(new java.awt.Font("Segoe UI", 1, 16)); // NOI18N
-        gestionarTXT.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseEntered(java.awt.event.MouseEvent evt) {
-                gestionarTXTMouseEntered(evt);
-            }
-            public void mouseExited(java.awt.event.MouseEvent evt) {
-                gestionarTXTMouseExited(evt);
-            }
-            public void mousePressed(java.awt.event.MouseEvent evt) {
-                gestionarTXTMousePressed(evt);
-            }
-        });
-        panelGestionClientes.add(gestionarTXT, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 0, 180, 70));
-
-        panelIzquierdo.add(panelGestionClientes, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 350, 230, 70));
 
         panelFondo.add(panelIzquierdo, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 230, 800));
 
@@ -260,7 +268,7 @@ public class Capturista extends javax.swing.JFrame {
                 .addGap(25, 25, 25)
                 .addGroup(PanelTituloBLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(labelBienvanida, javax.swing.GroupLayout.PREFERRED_SIZE, 637, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(ultimaSesion, javax.swing.GroupLayout.PREFERRED_SIZE, 448, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(ultimaSesion, javax.swing.GroupLayout.PREFERRED_SIZE, 395, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(358, Short.MAX_VALUE))
         );
         PanelTituloBLayout.setVerticalGroup(
@@ -373,10 +381,10 @@ public class Capturista extends javax.swing.JFrame {
             panelSuperiorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panelSuperiorLayout.createSequentialGroup()
                 .addGap(234, 234, 234)
-                .addComponent(lFechaActual, javax.swing.GroupLayout.PREFERRED_SIZE, 163, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(hora, javax.swing.GroupLayout.PREFERRED_SIZE, 220, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(561, 561, 561)
+                .addComponent(lFechaActual, javax.swing.GroupLayout.PREFERRED_SIZE, 174, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(hora, javax.swing.GroupLayout.PREFERRED_SIZE, 192, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(584, 584, 584)
                 .addGroup(panelSuperiorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(panelOcultar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(panelSuperiorLayout.createSequentialGroup()
@@ -425,17 +433,44 @@ public class Capturista extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void panelRegistrarMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_panelRegistrarMouseEntered
-        panelRegistrar.setBackground(new Color(0, 153, 204));
-    }//GEN-LAST:event_panelRegistrarMouseEntered
+    private void panelNuevoTipoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_panelNuevoTipoMouseClicked
+       Mostrar.mostrarPanel(panelPadre, new RegistrarCliente());
+    }//GEN-LAST:event_panelNuevoTipoMouseClicked
 
-    private void panelRegistrarMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_panelRegistrarMouseExited
-        panelRegistrar.setBackground(new Color(0, 73, 173));
-    }//GEN-LAST:event_panelRegistrarMouseExited
+    private void panelNuevoTipoMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_panelNuevoTipoMouseEntered
+        panelNuevoTipo.setBackground(new Color(0, 153, 204));
+    }//GEN-LAST:event_panelNuevoTipoMouseEntered
+
+    private void panelNuevoTipoMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_panelNuevoTipoMouseExited
+        panelNuevoTipo.setBackground(new Color(0, 73, 173));
+    }//GEN-LAST:event_panelNuevoTipoMouseExited
+
+    private void agregarMarcaPMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_agregarMarcaPMouseClicked
+        Mostrar.mostrarPanel(panelPadre, new GestionDeClientes());
+    }//GEN-LAST:event_agregarMarcaPMouseClicked
+
+    private void agregarMarcaPMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_agregarMarcaPMouseEntered
+        agregarMarcaP.setBackground(new Color(0, 153, 204));
+    }//GEN-LAST:event_agregarMarcaPMouseEntered
+
+    private void agregarMarcaPMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_agregarMarcaPMouseExited
+        agregarMarcaP.setBackground(new Color(0, 73, 173));
+    }//GEN-LAST:event_agregarMarcaPMouseExited
+
+    private void panelHomeMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_panelHomeMouseClicked
+       Mostrar.mostrarPanel(panelPadre, new PanelPadre2Capturista());
+    }//GEN-LAST:event_panelHomeMouseClicked
+
+    private void panelHomeMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_panelHomeMouseEntered
+        panelHome.setBackground(new Color(0, 153, 204));
+    }//GEN-LAST:event_panelHomeMouseEntered
+
+    private void panelHomeMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_panelHomeMouseExited
+        panelHome.setBackground(new Color(0, 73, 173));
+    }//GEN-LAST:event_panelHomeMouseExited
 
     private void labelSalir1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_labelSalir1MouseClicked
         this.dispose();
-        new Login().setVisible(true);
     }//GEN-LAST:event_labelSalir1MouseClicked
 
     private void labelSalir1MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_labelSalir1MouseEntered
@@ -474,64 +509,77 @@ public class Capturista extends javax.swing.JFrame {
         ymouse = evt.getY();
     }//GEN-LAST:event_panelSuperiorMousePressed
 
-    private void panelRegistrarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_panelRegistrarMouseClicked
+    private void agregarTipoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_agregarTipoMouseClicked
+        // agregar tipo aqui
+    }//GEN-LAST:event_agregarTipoMouseClicked
 
-        Mostrar.mostrarPanel(panelPadre, new RegistrarCliente());
+    private void agregarTipoICOMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_agregarTipoICOMouseClicked
+         // agregar tipo aqui
+    }//GEN-LAST:event_agregarTipoICOMouseClicked
 
-    }//GEN-LAST:event_panelRegistrarMouseClicked
+    private void agregarTipoMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_agregarTipoMouseEntered
+        panelNuevoTipo.setBackground(new Color(0, 153, 204));
+    }//GEN-LAST:event_agregarTipoMouseEntered
 
-    private void imprimirMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_imprimirMouseEntered
-        imprimir.setBackground(new Color(0, 153, 204));
-    }//GEN-LAST:event_imprimirMouseEntered
+    private void agregarTipoMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_agregarTipoMouseExited
+        panelNuevoTipo.setBackground(new Color(0, 73, 173));
+    }//GEN-LAST:event_agregarTipoMouseExited
 
-    private void imprimirMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_imprimirMouseExited
-        imprimir.setBackground(new Color(0, 73, 173));
-    }//GEN-LAST:event_imprimirMouseExited
+    private void agregarTipoICOMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_agregarTipoICOMouseEntered
+        panelNuevoTipo.setBackground(new Color(0, 153, 204));
+    }//GEN-LAST:event_agregarTipoICOMouseEntered
 
-    private void panelHomeMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_panelHomeMouseClicked
+    private void agregarTipoICOMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_agregarTipoICOMouseExited
+        panelNuevoTipo.setBackground(new Color(0, 73, 173));
+    }//GEN-LAST:event_agregarTipoICOMouseExited
 
-        Mostrar.mostrarPanel(panelPadre, new PanelPadre2Capturista());
+    private void principalMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_principalMouseEntered
+       panelHome.setBackground(new Color(0, 153, 204));
+    }//GEN-LAST:event_principalMouseEntered
 
-    }//GEN-LAST:event_panelHomeMouseClicked
+    private void labelAltaDefinicion2MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_labelAltaDefinicion2MouseEntered
+       panelHome.setBackground(new Color(0, 153, 204));
+    }//GEN-LAST:event_labelAltaDefinicion2MouseEntered
 
-    private void panelHomeMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_panelHomeMouseEntered
-        panelHome.setBackground(new Color(0, 153, 204));
-    }//GEN-LAST:event_panelHomeMouseEntered
-
-    private void panelHomeMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_panelHomeMouseExited
+    private void principalMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_principalMouseExited
         panelHome.setBackground(new Color(0, 73, 173));
-    }//GEN-LAST:event_panelHomeMouseExited
+    }//GEN-LAST:event_principalMouseExited
 
-    private void gestionarTXTMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_gestionarTXTMousePressed
+    private void labelAltaDefinicion2MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_labelAltaDefinicion2MouseExited
+        panelHome.setBackground(new Color(0, 73, 173));
+    }//GEN-LAST:event_labelAltaDefinicion2MouseExited
 
-        Mostrar.mostrarPanel(panelPadre, new GestionDeClientes());
+    private void agregarMarcaMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_agregarMarcaMouseEntered
+        agregarMarcaP.setBackground(new Color(0, 153, 204));
+    }//GEN-LAST:event_agregarMarcaMouseEntered
 
-    }//GEN-LAST:event_gestionarTXTMousePressed
+    private void agregarMarcaICOMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_agregarMarcaICOMouseEntered
+        agregarMarcaP.setBackground(new Color(0, 153, 204));
+    }//GEN-LAST:event_agregarMarcaICOMouseEntered
 
-    private void gestionarTXTMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_gestionarTXTMouseEntered
-        panelGestionClientes.setBackground(new Color(0, 153, 204));
-    }//GEN-LAST:event_gestionarTXTMouseEntered
+    private void agregarMarcaMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_agregarMarcaMouseExited
+        agregarMarcaP.setBackground(new Color(0, 73, 173));
+    }//GEN-LAST:event_agregarMarcaMouseExited
 
-    private void gestionarICOMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_gestionarICOMouseEntered
-        panelGestionClientes.setBackground(new Color(0, 153, 204));
-    }//GEN-LAST:event_gestionarICOMouseEntered
+    private void agregarMarcaICOMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_agregarMarcaICOMouseExited
+        agregarMarcaP.setBackground(new Color(0, 73, 173));
+    }//GEN-LAST:event_agregarMarcaICOMouseExited
 
-    private void gestionarTXTMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_gestionarTXTMouseExited
-        panelGestionClientes.setBackground(new Color(0, 73, 173));
-    }//GEN-LAST:event_gestionarTXTMouseExited
+    private void principalMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_principalMousePressed
+        Mostrar.mostrarPanel(panelPadre, new ventanas.paneles.RegistrarEquipos());
+    }//GEN-LAST:event_principalMousePressed
 
-    private void gestionarICOMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_gestionarICOMouseExited
-        panelGestionClientes.setBackground(new Color(0, 73, 173));
-    }//GEN-LAST:event_gestionarICOMouseExited
+    private void labelAltaDefinicion2MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_labelAltaDefinicion2MousePressed
+        Mostrar.mostrarPanel(panelPadre, new ventanas.paneles.RegistrarEquipos());
+    }//GEN-LAST:event_labelAltaDefinicion2MousePressed
 
-    private void gestionarICOMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_gestionarICOMousePressed
+    private void agregarMarcaMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_agregarMarcaMousePressed
+      // agregar Marca aqui
+    }//GEN-LAST:event_agregarMarcaMousePressed
 
-        Mostrar.mostrarPanel(panelPadre, new GestionDeClientes());
-    }//GEN-LAST:event_gestionarICOMousePressed
-
-    private void imprimirMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_imprimirMousePressed
-        // ---> agregar funcionalidad de imprimir aqui
-    }//GEN-LAST:event_imprimirMousePressed
+    private void agregarMarcaICOMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_agregarMarcaICOMousePressed
+        // agregar Marca aqui
+    }//GEN-LAST:event_agregarMarcaICOMousePressed
 
     /**
      * @param args the command line arguments
@@ -550,54 +598,53 @@ public class Capturista extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(Capturista.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(RegistrarEquiposForm.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(Capturista.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(RegistrarEquiposForm.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(Capturista.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(RegistrarEquiposForm.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(Capturista.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(RegistrarEquiposForm.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
+        //</editor-fold>
         //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new Capturista().setVisible(true);
+                new RegistrarEquiposForm().setVisible(true);
             }
         });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel PanelTituloB;
+    private componentesVisuales.LabelAltaDefinicion agregarMarca;
+    private componentesVisuales.LabelAltaDefinicion agregarMarcaICO;
+    private javax.swing.JPanel agregarMarcaP;
+    private componentesVisuales.LabelAltaDefinicion agregarTipo;
+    private componentesVisuales.LabelAltaDefinicion agregarTipoICO;
     private componentesVisuales.LabelAltaDefinicion banerInferior;
     private componentesVisuales.LabelAltaDefinicion bannerInferior2;
-    private componentesVisuales.LabelAltaDefinicion gestionarICO;
-    private componentesVisuales.LabelAltaDefinicion gestionarTXT;
     private componentesVisuales.LabelAltaDefinicion hora;
-    private javax.swing.JPanel imprimir;
-    private componentesVisuales.LabelAltaDefinicion imprimirICO;
-    private componentesVisuales.LabelAltaDefinicion imprimirTXT;
     private componentesVisuales.LabelAltaDefinicion lBaner;
     private componentesVisuales.LabelAltaDefinicion lFechaActual;
-    private componentesVisuales.LabelAltaDefinicion labelAltaDefinicion1;
     private componentesVisuales.LabelAltaDefinicion labelAltaDefinicion2;
     private componentesVisuales.LabelAltaDefinicion labelBienvanida;
     private componentesVisuales.LabelAltaDefinicion labelLogo;
     private componentesVisuales.LabelAltaDefinicion labelOcultar;
     private componentesVisuales.LabelAltaDefinicion labelSalir1;
     private javax.swing.JPanel panelFondo;
-    private javax.swing.JPanel panelGestionClientes;
     private javax.swing.JPanel panelHome;
     private javax.swing.JPanel panelIzquierdo;
+    private javax.swing.JPanel panelNuevoTipo;
     private javax.swing.JPanel panelOcultar;
-    public static javax.swing.JPanel panelPadre;
-    private javax.swing.JPanel panelRegistrar;
+    private javax.swing.JPanel panelPadre;
     private javax.swing.JPanel panelSalir;
     private javax.swing.JPanel panelSuperior;
     private componentesVisuales.LabelAltaDefinicion principal;
-    private componentesVisuales.LabelAltaDefinicion registarICO;
     private componentesVisuales.LabelAltaDefinicion ultimaSesion;
     // End of variables declaration//GEN-END:variables
 }
