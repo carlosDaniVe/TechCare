@@ -13,6 +13,7 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import javax.swing.JFrame;
 import javax.swing.Timer;
+import ventanas.paneles.GestionDeClientes;
 import ventanas.paneles.PanelPadre2Capturista;
 import ventanas.paneles.RegistrarCliente;
 
@@ -499,7 +500,8 @@ public class Capturista extends javax.swing.JFrame {
     }//GEN-LAST:event_panelHomeMouseExited
 
     private void gestionarTXTMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_gestionarTXTMousePressed
-        // --> Mostrar panel de Gestionar Clientes aqui...
+        
+        Mostrar.mostrarPanel(panelPadre, new GestionDeClientes());
 
     }//GEN-LAST:event_gestionarTXTMousePressed
 
