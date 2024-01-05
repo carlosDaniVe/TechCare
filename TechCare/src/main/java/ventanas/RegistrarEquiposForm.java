@@ -9,6 +9,7 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import javax.swing.JFrame;
 import javax.swing.Timer;
+import ventanas.paneles.AgregarMarca;
 import ventanas.paneles.AgregarTipo;
 import ventanas.paneles.GestionDeClientes;
 import ventanas.paneles.PanelPadre2Capturista;
@@ -381,7 +382,7 @@ public class RegistrarEquiposForm extends javax.swing.JFrame {
     }//GEN-LAST:event_panelNuevoTipoMouseExited
 
     private void agregarMarcaPMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_agregarMarcaPMouseClicked
-        // Agregar marca aca
+        Mostrar.mostrarPanel(panelPadre, new AgregarMarca());
     }//GEN-LAST:event_agregarMarcaPMouseClicked
 
     private void agregarMarcaPMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_agregarMarcaPMouseEntered

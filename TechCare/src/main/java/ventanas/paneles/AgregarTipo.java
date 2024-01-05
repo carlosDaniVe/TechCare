@@ -105,6 +105,8 @@ public class AgregarTipo extends javax.swing.JPanel {
                 int resultado = ps.executeUpdate();
                 if(resultado > 0 ){
                     JOptionPane.showMessageDialog(null, "Agregado");
+                    agregarTipoTXT.setForeground(new Color(153,153,153));
+                    agregarTipoTXT.setText("Ingrese el Tipo de Equipo");
                 }
                 cn.close();
             }catch(HeadlessException | SQLException e){
