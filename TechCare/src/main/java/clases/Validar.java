@@ -216,4 +216,30 @@ public class Validar {
             return false;
         }
     }
+    
+    public static boolean validacionSimple(TextFieldRedondeado elemento, int seleccion) {
+        if (seleccion == 1) {
+            if (elemento.getText().equals("Ingrese la Marca")
+                    || elemento.getText().isEmpty()) {
+                elemento.setForeground(Color.red);
+                elemento.setText("Ingrese la Marca");
+                validador++;
+            }
+        }
+        
+        if (seleccion == 2) {
+            if (elemento.getText().equals("Ingrese el Tipo de Equipo")
+                    || elemento.getText().isEmpty()) {
+                elemento.setForeground(Color.red);
+                elemento.setText("Ingrese el Tipo de Equipo");
+                validador++;
+            }
+        }
+        
+        if(validador ==0){
+            return true;
+        }else{
+            return false;
+        }
+    }
 }

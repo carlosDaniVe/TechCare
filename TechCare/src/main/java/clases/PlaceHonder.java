@@ -365,5 +365,20 @@ public class PlaceHonder {
             }
         }
     }
+    
+    public static void placeHolderSimple(TextFieldRedondeado elemento,
+            int seleccion) {
+        if (seleccion == 1) {
+            if (elemento.getText().equals("Ingrese la Marca")) {
+                elemento.setText("");
+                elemento.setForeground(new Color(53, 53, 53));
+            }
+        } else if (seleccion == 2) {
+            if (elemento.getText().equals("Ingrese el Tipo de Equipo")) {
+                elemento.setText("");
+                elemento.setForeground(new Color(53, 53, 53));
+            }
+        }
+    }
 
 }

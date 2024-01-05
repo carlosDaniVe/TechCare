@@ -9,6 +9,7 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import javax.swing.JFrame;
 import javax.swing.Timer;
+import ventanas.paneles.AgregarTipo;
 import ventanas.paneles.GestionDeClientes;
 import ventanas.paneles.PanelPadre2Capturista;
 import ventanas.paneles.RegistrarCliente;
@@ -108,31 +109,9 @@ public class RegistrarEquiposForm extends javax.swing.JFrame {
         agregarTipo.setForeground(new java.awt.Color(255, 255, 255));
         agregarTipo.setText("     Agregar Nuevo Tipo");
         agregarTipo.setFont(new java.awt.Font("Segoe UI", 1, 15)); // NOI18N
-        agregarTipo.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                agregarTipoMouseClicked(evt);
-            }
-            public void mouseEntered(java.awt.event.MouseEvent evt) {
-                agregarTipoMouseEntered(evt);
-            }
-            public void mouseExited(java.awt.event.MouseEvent evt) {
-                agregarTipoMouseExited(evt);
-            }
-        });
         panelNuevoTipo.add(agregarTipo, new org.netbeans.lib.awtextra.AbsoluteConstraints(49, 0, 180, 70));
 
         agregarTipoICO.setIcono(new javax.swing.ImageIcon(getClass().getResource("/user-addlist.png"))); // NOI18N
-        agregarTipoICO.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                agregarTipoICOMouseClicked(evt);
-            }
-            public void mouseEntered(java.awt.event.MouseEvent evt) {
-                agregarTipoICOMouseEntered(evt);
-            }
-            public void mouseExited(java.awt.event.MouseEvent evt) {
-                agregarTipoICOMouseExited(evt);
-            }
-        });
         panelNuevoTipo.add(agregarTipoICO, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 50, 50));
 
         panelIzquierdo.add(panelNuevoTipo, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 280, 230, 70));
@@ -170,33 +149,11 @@ public class RegistrarEquiposForm extends javax.swing.JFrame {
         agregarMarcaP.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         agregarMarcaICO.setIcono(new javax.swing.ImageIcon(getClass().getResource("/gestionUsers.png"))); // NOI18N
-        agregarMarcaICO.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseEntered(java.awt.event.MouseEvent evt) {
-                agregarMarcaICOMouseEntered(evt);
-            }
-            public void mouseExited(java.awt.event.MouseEvent evt) {
-                agregarMarcaICOMouseExited(evt);
-            }
-            public void mousePressed(java.awt.event.MouseEvent evt) {
-                agregarMarcaICOMousePressed(evt);
-            }
-        });
         agregarMarcaP.add(agregarMarcaICO, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 50, 50));
 
         agregarMarca.setForeground(new java.awt.Color(255, 255, 255));
         agregarMarca.setText("    Agregar Marca");
         agregarMarca.setFont(new java.awt.Font("Segoe UI", 1, 16)); // NOI18N
-        agregarMarca.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseEntered(java.awt.event.MouseEvent evt) {
-                agregarMarcaMouseEntered(evt);
-            }
-            public void mouseExited(java.awt.event.MouseEvent evt) {
-                agregarMarcaMouseExited(evt);
-            }
-            public void mousePressed(java.awt.event.MouseEvent evt) {
-                agregarMarcaMousePressed(evt);
-            }
-        });
         agregarMarcaP.add(agregarMarca, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 0, 180, 70));
 
         panelIzquierdo.add(agregarMarcaP, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 347, 230, 70));
@@ -219,31 +176,9 @@ public class RegistrarEquiposForm extends javax.swing.JFrame {
         principal.setForeground(new java.awt.Color(255, 255, 255));
         principal.setText("   Principal");
         principal.setFont(new java.awt.Font("Segoe UI", 1, 16)); // NOI18N
-        principal.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseEntered(java.awt.event.MouseEvent evt) {
-                principalMouseEntered(evt);
-            }
-            public void mouseExited(java.awt.event.MouseEvent evt) {
-                principalMouseExited(evt);
-            }
-            public void mousePressed(java.awt.event.MouseEvent evt) {
-                principalMousePressed(evt);
-            }
-        });
         panelHome.add(principal, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 8, 170, 60));
 
         labelAltaDefinicion2.setIcono(new javax.swing.ImageIcon(getClass().getResource("/home.png"))); // NOI18N
-        labelAltaDefinicion2.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseEntered(java.awt.event.MouseEvent evt) {
-                labelAltaDefinicion2MouseEntered(evt);
-            }
-            public void mouseExited(java.awt.event.MouseEvent evt) {
-                labelAltaDefinicion2MouseExited(evt);
-            }
-            public void mousePressed(java.awt.event.MouseEvent evt) {
-                labelAltaDefinicion2MousePressed(evt);
-            }
-        });
         panelHome.add(labelAltaDefinicion2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 50, 50));
 
         panelIzquierdo.add(panelHome, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 208, 230, 70));
@@ -434,7 +369,7 @@ public class RegistrarEquiposForm extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void panelNuevoTipoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_panelNuevoTipoMouseClicked
-       Mostrar.mostrarPanel(panelPadre, new RegistrarCliente());
+       Mostrar.mostrarPanel(panelPadre, new AgregarTipo());
     }//GEN-LAST:event_panelNuevoTipoMouseClicked
 
     private void panelNuevoTipoMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_panelNuevoTipoMouseEntered
@@ -446,7 +381,7 @@ public class RegistrarEquiposForm extends javax.swing.JFrame {
     }//GEN-LAST:event_panelNuevoTipoMouseExited
 
     private void agregarMarcaPMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_agregarMarcaPMouseClicked
-        Mostrar.mostrarPanel(panelPadre, new GestionDeClientes());
+        // Agregar marca aca
     }//GEN-LAST:event_agregarMarcaPMouseClicked
 
     private void agregarMarcaPMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_agregarMarcaPMouseEntered
@@ -508,78 +443,6 @@ public class RegistrarEquiposForm extends javax.swing.JFrame {
         xmouse = evt.getX();
         ymouse = evt.getY();
     }//GEN-LAST:event_panelSuperiorMousePressed
-
-    private void agregarTipoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_agregarTipoMouseClicked
-        // agregar tipo aqui
-    }//GEN-LAST:event_agregarTipoMouseClicked
-
-    private void agregarTipoICOMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_agregarTipoICOMouseClicked
-         // agregar tipo aqui
-    }//GEN-LAST:event_agregarTipoICOMouseClicked
-
-    private void agregarTipoMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_agregarTipoMouseEntered
-        panelNuevoTipo.setBackground(new Color(0, 153, 204));
-    }//GEN-LAST:event_agregarTipoMouseEntered
-
-    private void agregarTipoMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_agregarTipoMouseExited
-        panelNuevoTipo.setBackground(new Color(0, 73, 173));
-    }//GEN-LAST:event_agregarTipoMouseExited
-
-    private void agregarTipoICOMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_agregarTipoICOMouseEntered
-        panelNuevoTipo.setBackground(new Color(0, 153, 204));
-    }//GEN-LAST:event_agregarTipoICOMouseEntered
-
-    private void agregarTipoICOMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_agregarTipoICOMouseExited
-        panelNuevoTipo.setBackground(new Color(0, 73, 173));
-    }//GEN-LAST:event_agregarTipoICOMouseExited
-
-    private void principalMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_principalMouseEntered
-       panelHome.setBackground(new Color(0, 153, 204));
-    }//GEN-LAST:event_principalMouseEntered
-
-    private void labelAltaDefinicion2MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_labelAltaDefinicion2MouseEntered
-       panelHome.setBackground(new Color(0, 153, 204));
-    }//GEN-LAST:event_labelAltaDefinicion2MouseEntered
-
-    private void principalMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_principalMouseExited
-        panelHome.setBackground(new Color(0, 73, 173));
-    }//GEN-LAST:event_principalMouseExited
-
-    private void labelAltaDefinicion2MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_labelAltaDefinicion2MouseExited
-        panelHome.setBackground(new Color(0, 73, 173));
-    }//GEN-LAST:event_labelAltaDefinicion2MouseExited
-
-    private void agregarMarcaMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_agregarMarcaMouseEntered
-        agregarMarcaP.setBackground(new Color(0, 153, 204));
-    }//GEN-LAST:event_agregarMarcaMouseEntered
-
-    private void agregarMarcaICOMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_agregarMarcaICOMouseEntered
-        agregarMarcaP.setBackground(new Color(0, 153, 204));
-    }//GEN-LAST:event_agregarMarcaICOMouseEntered
-
-    private void agregarMarcaMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_agregarMarcaMouseExited
-        agregarMarcaP.setBackground(new Color(0, 73, 173));
-    }//GEN-LAST:event_agregarMarcaMouseExited
-
-    private void agregarMarcaICOMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_agregarMarcaICOMouseExited
-        agregarMarcaP.setBackground(new Color(0, 73, 173));
-    }//GEN-LAST:event_agregarMarcaICOMouseExited
-
-    private void principalMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_principalMousePressed
-        Mostrar.mostrarPanel(panelPadre, new ventanas.paneles.RegistrarEquipos());
-    }//GEN-LAST:event_principalMousePressed
-
-    private void labelAltaDefinicion2MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_labelAltaDefinicion2MousePressed
-        Mostrar.mostrarPanel(panelPadre, new ventanas.paneles.RegistrarEquipos());
-    }//GEN-LAST:event_labelAltaDefinicion2MousePressed
-
-    private void agregarMarcaMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_agregarMarcaMousePressed
-      // agregar Marca aqui
-    }//GEN-LAST:event_agregarMarcaMousePressed
-
-    private void agregarMarcaICOMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_agregarMarcaICOMousePressed
-        // agregar Marca aqui
-    }//GEN-LAST:event_agregarMarcaICOMousePressed
 
     /**
      * @param args the command line arguments
