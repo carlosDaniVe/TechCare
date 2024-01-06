@@ -380,5 +380,33 @@ public class PlaceHonder {
             }
         }
     }
+    
+    public static void placeHolderRestaurarContraseña(PasswordField elemento1, 
+            PasswordField elemento2, int seleccion){
+        if(seleccion == 1){
+            if(String.valueOf(elemento1.getPassword()).equals(
+            "**********")){
+                elemento1.setText("");
+                elemento1.setForeground(new Color(54,54,54));
+                
+            }
+            if(String.valueOf(elemento2.getPassword()).isEmpty()){
+                elemento2.setText("**********");
+                elemento2.setForeground(new Color(153,153,153));
+            }
+        }
+        if(seleccion ==2){
+            if(String.valueOf(elemento2.getPassword()).equals(
+            "**********")){
+                elemento2.setText("");
+                elemento2.setForeground(new Color(54,54,54));
+                
+            }
+            if(String.valueOf(elemento1.getPassword()).isEmpty()){
+                elemento1.setText("**********");
+                elemento1.setForeground(new Color(153,153,153));
+            }
+        }
+    }
 
 }

@@ -124,7 +124,8 @@ public class Validar {
         }
     }
 
-    public static boolean validarClientes(List<TextFieldRedondeado> elementos) {
+    public static boolean validarClientes(List<TextFieldRedondeado> elementos)
+    {
         validador = 0;
         if (elementos.get(0) != null) {
             if (elementos.get(0).getText().equals("Ingrese el Nombre")
@@ -168,8 +169,8 @@ public class Validar {
 
     }
 
-    public static boolean validarEquipos(List<TextFieldRedondeado> elementos, List<ComboBoxHD> elemento2,
-            List<LabelAltaDefinicion> label) {
+    public static boolean validarEquipos(List<TextFieldRedondeado> elementos,
+            List<ComboBoxHD> elemento2, List<LabelAltaDefinicion> label) {
         if (elementos.get(0) != null) {
             if (elementos.get(0).getText().equals("Modelo")
                     || elementos.get(0).getText().isEmpty()) {
@@ -217,7 +218,8 @@ public class Validar {
         }
     }
     
-    public static boolean validacionSimple(TextFieldRedondeado elemento, int seleccion) {
+    public static boolean validacionSimple(TextFieldRedondeado elemento, 
+            int seleccion) {
         if (seleccion == 1) {
             if (elemento.getText().equals("Ingrese la Marca")
                     || elemento.getText().isEmpty()) {
@@ -239,6 +241,31 @@ public class Validar {
         if(validador ==0){
             return true;
         }else{
+            return false;
+        }
+    }
+    
+    public static boolean validarRestaurarContraseña(PasswordField elemento1, 
+            PasswordField elemento2) {
+
+        validador = 0;
+
+        if (String.valueOf(elemento1.getPassword()).equals("**********")
+                || String.valueOf(elemento1).isEmpty()) {
+            validador++;
+            elemento1.setForeground(Color.red);
+            elemento1.setText("**********");
+        }
+        if (String.valueOf(elemento2.getPassword()).equals("**********")
+                || String.valueOf(elemento2.getPassword()).isEmpty()) {
+            validador++;
+            elemento2.setForeground(Color.red);
+            elemento2.setText("**********");
+        }
+
+        if (validador == 0) {
+            return true;
+        } else {
             return false;
         }
     }

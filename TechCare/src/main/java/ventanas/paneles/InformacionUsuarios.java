@@ -15,6 +15,7 @@ import componentesVisuales.ComboBoxHD;
 import componentesVisuales.LabelAltaDefinicion;
 import componentesVisuales.TextFieldRedondeado;
 import ventanas.Login;
+import ventanas.RestaurarContraseña;
 //--> crar e importar desde ventanas.RestaurarContraseña ;
 
 /**
@@ -328,7 +329,7 @@ public class InformacionUsuarios extends javax.swing.JPanel {
     }//GEN-LAST:event_actualizarLMouseExited
 
     private void restaurarLMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_restaurarLMousePressed
-// --> Usar la ventana para Restaurar Contraseña == new RestaurarContraseña().setVisible(true);
+         new RestaurarContraseña().setVisible(true);
     }//GEN-LAST:event_restaurarLMousePressed
 
     private void txtNombreMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtNombreMousePressed

@@ -466,8 +466,9 @@ public class InformacionEquipos extends javax.swing.JPanel {
     // End of variables declaration//GEN-END:variables
 
     private void llenarCombobox() {
+        
         try {
-            Connection cn = new Conectar().conectar();
+            Connection cn = Conectar.conectar();
             PreparedStatement ps = cn.prepareStatement(
                     "select * from tipos");
 
