@@ -3,6 +3,7 @@ package ventanas.paneles;
 import clases.Conectar;
 import clases.Mostrar;
 import clases.PlaceHonder;
+import clases.ReporteInformacionCliente;
 import clases.Validar;
 import java.awt.Color;
 import java.awt.event.ActionEvent;
@@ -21,6 +22,16 @@ import javax.swing.Timer;
 import javax.swing.table.DefaultTableModel;
 import componentesVisuales.ScrollBar;
 import componentesVisuales.TextFieldRedondeado;
+import java.util.HashMap;
+import javax.swing.WindowConstants;
+import static javax.swing.WindowConstants.DISPOSE_ON_CLOSE;
+import net.sf.jasperreports.engine.JRException;
+import net.sf.jasperreports.engine.JasperFillManager;
+import net.sf.jasperreports.engine.JasperPrint;
+import net.sf.jasperreports.engine.JasperReport;
+import net.sf.jasperreports.engine.data.JRBeanCollectionDataSource;
+import net.sf.jasperreports.engine.util.JRLoader;
+import net.sf.jasperreports.view.JasperViewer;
 import ventanas.Capturista;
 import ventanas.RegistrarEquiposForm;
 
@@ -34,6 +45,8 @@ public class InformacionCliente extends javax.swing.JPanel {
     public static String cedula, user, cliente;
     public static DefaultTableModel modelo;
     public static int id;
+    String cedulaCliente, correoCliente, telefonoCliente, direccionCliente,
+            ultimaModificacionCliente;
 
     public InformacionCliente() {
         initComponents();
@@ -55,14 +68,20 @@ public class InformacionCliente extends javax.swing.JPanel {
                 txtTelefono.setForeground(new Color(53, 53, 53));
                 dirreccion.setForeground(new Color(53, 53, 53));
 
-                txtNombre.setText(rsw.getString("nombre"));
                 cliente = rsw.getString("nombre");
-                txtCedula.setText(rsw.getString("cedula"));
-                txtCorreo.setText(rsw.getString("correo"));
-                txtTelefono.setText(rsw.getString("telefono"));
-                dirreccion.setText(rsw.getString("direccion"));
+                cedulaCliente = rsw.getString("cedula");
+                correoCliente = rsw.getString("correo");
+                telefonoCliente = rsw.getString("telefono");
+                direccionCliente = rsw.getString("direccion");
+                ultimaModificacionCliente = rsw.getString("ultimaModificacion");
 
-                ultima.setText("Ultima Modificacion: " + rsw.getString("ultimaModificacion"));
+                txtNombre.setText(cliente);
+                txtCedula.setText(cedulaCliente);
+                txtCorreo.setText(correoCliente);
+                txtTelefono.setText(telefonoCliente);
+                dirreccion.setText(direccionCliente);
+
+                ultima.setText("Ultima Modificacion: " + ultimaModificacionCliente);
             }
             rsw.close();
 
@@ -261,6 +280,9 @@ public class InformacionCliente extends javax.swing.JPanel {
             public void mouseExited(java.awt.event.MouseEvent evt) {
                 imprimirMouseExited(evt);
             }
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                imprimirMousePressed(evt);
+            }
         });
         imprimirp.add(imprimir, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 210, 90));
 
@@ -416,6 +438,75 @@ public class InformacionCliente extends javax.swing.JPanel {
 
         PlaceHonder.placeHolderUser(elementos, null, 1);
     }//GEN-LAST:event_txtNombreMousePressed
+
+    private void imprimirMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_imprimirMousePressed
+
+        /* Nota 1: Para mostrar informacion en un reporte usando un HashMap y una 
+        *  colleccion de objetos, los campos (parametros y flieds) tienen que ser 
+        *  TextFiled y no StaticText en JasperReport.
+        *
+        *  Nota 2: No colocar break en el reporte, eso va a dividir la pagina creando 
+        *  dos hojas.
+         */
+        HashMap<String, Object> parametros = new HashMap<>();
+        parametros.put("cliente", cliente);
+        parametros.put("cedula", cedulaCliente);
+        parametros.put("correo", correoCliente);
+        parametros.put("telefono", telefonoCliente);
+        parametros.put("direccion", direccionCliente);
+        parametros.put("modificacion", ultimaModificacionCliente);
+
+        try {
+            Connection conexion = Conectar.conectar();
+            PreparedStatement ps = conexion.prepareStatement(
+                    "SELECT tipo, marca, modelo, serie, fechaIngreso, estatus, "
+                    + "ultimaFecha FROM equipos WHERE cedulaCliente = ?");
+            ps.setString(1, cedula);
+
+            ResultSet rs = ps.executeQuery();
+            ResultSetMetaData rmd = rs.getMetaData();
+
+            // Obtener el número de columnas
+            int columnas = rmd.getColumnCount();
+
+            // Creacion y llenado del arreglo segun los datos de las Consultas.
+            ReporteInformacionCliente informacion;
+            List<ReporteInformacionCliente> fuenteDeDatosReporte = new ArrayList<>();
+
+            for (int i = 0; rs.next(); i++) {
+                String arreglo[] = new String[columnas];
+                for (int j = 0; j < columnas; j++) {
+
+                    arreglo[j] = rs.getString(j + 1);
+
+                }
+                informacion = new ReporteInformacionCliente(arreglo[0], arreglo[1], arreglo[2],
+                        arreglo[3], arreglo[4], arreglo[5], arreglo[6]);
+
+                fuenteDeDatosReporte.add(informacion);
+            }
+
+            String path = "src/main/resources/InformacionCliente.jasper";
+            JRBeanCollectionDataSource fuente = new JRBeanCollectionDataSource(
+                    fuenteDeDatosReporte);
+
+            try {
+
+                JasperPrint print = JasperFillManager.fillReport(path, parametros, fuente);
+                JasperViewer vista = new JasperViewer(print, false);
+                vista.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
+                vista.setVisible(true);
+
+            } catch (JRException e) {
+                System.out.println("Error en crear Reporte: " + e);
+            }
+
+        } catch (SQLException e) {
+            System.out.println("Error en consultar para hacer reporte: " + e);
+        }
+
+
+    }//GEN-LAST:event_imprimirMousePressed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
