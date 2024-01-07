@@ -11,8 +11,15 @@ import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.HashMap;
 import javax.swing.JFrame;
 import javax.swing.Timer;
+import net.sf.jasperreports.engine.JRException;
+import net.sf.jasperreports.engine.JasperFillManager;
+import net.sf.jasperreports.engine.JasperPrint;
+import net.sf.jasperreports.engine.JasperReport;
+import net.sf.jasperreports.engine.util.JRLoader;
+import net.sf.jasperreports.view.JasperViewer;
 import ventanas.paneles.GestionDeClientes;
 import ventanas.paneles.PanelPadre2Capturista;
 import ventanas.paneles.RegistrarCliente;
@@ -530,7 +537,23 @@ public class Capturista extends javax.swing.JFrame {
     }//GEN-LAST:event_gestionarICOMousePressed
 
     private void imprimirMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_imprimirMousePressed
-        // ---> agregar funcionalidad de imprimir aqui
+        HashMap<String,Object> parametros = new HashMap<>();
+        parametros.put("usuario", usuario);
+        
+        try {
+            Connection conexion = Conectar.conectar();
+            
+            JasperReport reporte = (JasperReport) JRLoader.loadObjectFromFile(
+            "src/main/resources/TodosLosClientes.jasper");
+            
+            JasperPrint print = JasperFillManager.fillReport(reporte, 
+                    parametros, conexion);
+            JasperViewer vista = new JasperViewer(print,false);
+            vista.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
+            vista.setVisible(true);
+        } catch (JRException e) {
+            System.out.println(e);
+        }
     }//GEN-LAST:event_imprimirMousePressed
 
     /**
