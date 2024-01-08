@@ -387,7 +387,8 @@ public class Login extends javax.swing.JFrame {
                     } else if (permiso.equals("Tecnico")) {
 
                         if (estatus.equals("Activo")) {
-                            //Hacer new Tecnico().setVisible(true);
+                            new Tecnico().setVisible(true);
+                            this.dispose();
                         } else {
                             JOptionPane.showMessageDialog(null, "Usuario inactivo");
                         }

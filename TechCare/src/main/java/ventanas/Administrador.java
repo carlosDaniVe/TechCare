@@ -26,6 +26,7 @@ public class Administrador extends javax.swing.JFrame {
 
     int xmouse, ymouse;
     String usuario;
+    public static int bandera = 0;
 
     public Administrador() {
         initComponents();
@@ -628,11 +629,15 @@ public class Administrador extends javax.swing.JFrame {
     }//GEN-LAST:event_lTecnicoMouseExited
 
     private void lTecnicoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lTecnicoMouseClicked
-
+        
+        bandera = 1;
+        new Tecnico().setVisible(true);
     }//GEN-LAST:event_lTecnicoMouseClicked
 
     private void lTecnicoIcMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lTecnicoIcMouseClicked
-        // new Tecnico().setVisible(true);
+      
+        bandera = 1;
+        new Tecnico().setVisible(true);
     }//GEN-LAST:event_lTecnicoIcMouseClicked
 
     private void lRegistrarIc1MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lRegistrarIc1MouseExited
@@ -732,13 +737,15 @@ public class Administrador extends javax.swing.JFrame {
 
     private void lCapturistaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lCapturistaMouseClicked
 
+        bandera = 1;
         Capturista capturista = new Capturista();
         capturista.setVisible(true);
 
     }//GEN-LAST:event_lCapturistaMouseClicked
 
     private void gestionarUsuariosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_gestionarUsuariosMouseClicked
-
+        
+        bandera = 1;
         Capturista capturista = new Capturista();
         capturista.setVisible(true);
 
