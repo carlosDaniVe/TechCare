@@ -8,7 +8,7 @@ public class LlenarModeloTabla {
     public static DefaultTableModel llenarModelo(String query, DefaultTableModel modelo) {
 
         try {
-            Connection conexion = new Conectar().conectar();
+            Connection conexion = Conectar.conectar();
 
             PreparedStatement ps = conexion.prepareStatement(
                     query);

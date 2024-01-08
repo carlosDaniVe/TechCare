@@ -2,6 +2,7 @@ package ventanas;
 
 import clases.Conectar;
 import clases.Fechas;
+import clases.Mostrar;
 import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -12,6 +13,8 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import javax.swing.JFrame;
 import javax.swing.Timer;
+import ventanas.paneles.GestionDeEquipos;
+import ventanas.paneles.PanelPadre2Tecnico;
 
 
 /**
@@ -61,7 +64,8 @@ public class Tecnico extends javax.swing.JFrame {
         horaActual.setCoalesce(true);
         horaActual.setInitialDelay(0);
         horaActual.start();
-        // -- mostrar panel principal aqui.
+        
+        Mostrar.mostrarPanel(panelPadre, new PanelPadre2Tecnico());
     }
 
     
@@ -237,6 +241,9 @@ public class Tecnico extends javax.swing.JFrame {
             }
             public void mouseExited(java.awt.event.MouseEvent evt) {
                 panelHomeMouseExited(evt);
+            }
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                panelHomeMousePressed(evt);
             }
         });
         panelHome.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -529,7 +536,7 @@ public class Tecnico extends javax.swing.JFrame {
     }//GEN-LAST:event_gestionarEqMouseEntered
 
     private void gestionarEqMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_gestionarEqMouseClicked
-        // ----> Gestion de equipos aqui;
+        Mostrar.mostrarPanel(panelPadre, new GestionDeEquipos());
     }//GEN-LAST:event_gestionarEqMouseClicked
 
     private void panelHomeMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_panelHomeMouseEntered
@@ -539,6 +546,12 @@ public class Tecnico extends javax.swing.JFrame {
     private void panelHomeMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_panelHomeMouseExited
         panelHome.setBackground(new Color(0, 73, 173));
     }//GEN-LAST:event_panelHomeMouseExited
+
+    private void panelHomeMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_panelHomeMousePressed
+        
+       Mostrar.mostrarPanel(panelPadre, new PanelPadre2Tecnico());
+       
+    }//GEN-LAST:event_panelHomeMousePressed
 
     /**
      * @param args the command line arguments
