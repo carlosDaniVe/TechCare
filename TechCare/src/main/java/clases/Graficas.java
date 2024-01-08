@@ -46,4 +46,17 @@ public class Graficas {
     }
     
     
+    public static JFreeChart graficaCircular(List<Integer> datos, List<String> nombres){
+        DefaultPieDataset dato = new DefaultPieDataset();
+        
+        for (int i = 0; i < datos.size(); i++) {
+            dato.setValue(nombres.get(i),datos.get(i));
+        }
+        
+        JFreeChart grafico = ChartFactory.createPieChart("Grafica de Tipos",
+                dato, true, true, false);
+        grafico.getPlot().setBackgroundPaint(Color.WHITE);
+        
+        return grafico;
+    }
 }
