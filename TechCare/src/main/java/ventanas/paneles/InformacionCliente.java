@@ -23,14 +23,11 @@ import javax.swing.table.DefaultTableModel;
 import componentesVisuales.ScrollBar;
 import componentesVisuales.TextFieldRedondeado;
 import java.util.HashMap;
-import javax.swing.WindowConstants;
 import static javax.swing.WindowConstants.DISPOSE_ON_CLOSE;
 import net.sf.jasperreports.engine.JRException;
 import net.sf.jasperreports.engine.JasperFillManager;
 import net.sf.jasperreports.engine.JasperPrint;
-import net.sf.jasperreports.engine.JasperReport;
 import net.sf.jasperreports.engine.data.JRBeanCollectionDataSource;
-import net.sf.jasperreports.engine.util.JRLoader;
 import net.sf.jasperreports.view.JasperViewer;
 import ventanas.Capturista;
 import ventanas.RegistrarEquiposForm;
@@ -106,11 +103,12 @@ public class InformacionCliente extends javax.swing.JPanel {
             public void mouseClicked(MouseEvent e) {
                 int fila = tablaG.rowAtPoint(e.getPoint());
                 int columna = 3;
-
+                
                 if (fila > -1) {
+                    
                     id = (int) tablaG.getModel().getValueAt(fila, columna);
                     Mostrar.mostrarPanel(Capturista.panelPadre,
-                            new InformacionEquipos());
+                            new InformacionEquipos(id,1));
                 }
             }
         });

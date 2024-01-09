@@ -182,10 +182,10 @@ public class RegistrarCliente extends javax.swing.JPanel {
             String correo = txtCorreo.getText().trim();
             String telefono = txtTelefono.getText().trim();
             String direccion = dirreccion.getText().trim();
-            user = Login.user;
+            
             
             try {
-                Connection cn = new Conectar().conectar();
+                Connection cn = Conectar.conectar();
                 PreparedStatement ps = cn.prepareStatement(
                         "insert into clientes values(?,?,?,?,?,?)");
                 ps.setString(1, nombre);

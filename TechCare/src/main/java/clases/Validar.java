@@ -171,6 +171,7 @@ public class Validar {
 
     public static boolean validarEquipos(List<TextFieldRedondeado> elementos,
             List<ComboBoxHD> elemento2, List<LabelAltaDefinicion> label) {
+        validador =0;
         if (elementos.get(0) != null) {
             if (elementos.get(0).getText().equals("Modelo")
                     || elementos.get(0).getText().isEmpty()) {
@@ -220,6 +221,7 @@ public class Validar {
     
     public static boolean validacionSimple(TextFieldRedondeado elemento, 
             int seleccion) {
+        validador =0;
         if (seleccion == 1) {
             if (elemento.getText().equals("Ingrese la Marca")
                     || elemento.getText().isEmpty()) {

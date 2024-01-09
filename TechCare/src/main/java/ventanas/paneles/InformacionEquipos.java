@@ -29,10 +29,11 @@ public class InformacionEquipos extends javax.swing.JPanel {
     List<ComboBoxHD> boxes = new ArrayList<>();
     List<LabelAltaDefinicion> label = new ArrayList<>();
 
-    String cliente, cedula1, user;
-    int  id;
+    String cliente, cedula1, user, query;
+    int id;
 
-    public InformacionEquipos() {
+    public InformacionEquipos(int id, int bandera) {
+        this.id = id;
         initComponents();
         spComentario.setVerticalScrollBar(new ScrollBar());
         spDaños.setVerticalScrollBar(new ScrollBar());
@@ -41,16 +42,44 @@ public class InformacionEquipos extends javax.swing.JPanel {
 
         cedula1 = InformacionCliente.cedula;
         user = Login.user;
-        id= InformacionCliente.id;
         cliente = InformacionCliente.cliente;
-        labelCliente3.setText("Cliente: " + cliente);
+        
 
+        if (bandera == 2) {
+
+            try {
+                Connection conexion = Conectar.conectar();
+                PreparedStatement ps = conexion.prepareStatement(
+                        "select cedulaCliente from equipos where id = ?");
+
+                ps.setString(1, String.valueOf(id));
+
+                ResultSet rs = ps.executeQuery();
+                if (rs.next()) {
+                    cliente = rs.getString("cedulaCliente");
+                }
+                conexion.close();
+                rs.close();
+                ps.close();
+            } catch (SQLException e) {
+                System.out.println("Error en colsultar cedula: " + e);
+            }
+        }
+        
+        labelCliente3.setText("Cliente: " + cliente);
+        
+        if (bandera == 1) {
+            query = "select * from equipos where cedulaCliente = '" + cedula1+ "' "
+                    + "and id = '" +id+"'";
+        } else if (bandera == 2) {
+            query = "select * from equipos where id = '" + id + "'";
+        }
         llenarCombobox();
 
         try {
             Connection cn = Conectar.conectar();
             PreparedStatement ps = cn.prepareStatement(
-                    "select * from equipos where cedulaCliente = '" + cedula1 + "'");
+                    query);
 
             ResultSet rs = ps.executeQuery();
 
@@ -71,6 +100,7 @@ public class InformacionEquipos extends javax.swing.JPanel {
             ps.close();
             cn.close();
         } catch (SQLException e) {
+            System.out.println(e);
         }
 
         llenarElementos();
@@ -87,7 +117,6 @@ public class InformacionEquipos extends javax.swing.JPanel {
         label.add(alertaEstatus);
     }
 
-    
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -383,16 +412,14 @@ public class InformacionEquipos extends javax.swing.JPanel {
             String daños = txaDaños.getText();
             String estatus = (String) cbxEstatus.getSelectedItem();
             String comentarios = txaComentarios.getText();
-            
 
             try {
-                Connection cn =Conectar.conectar();
-                PreparedStatement ps = cn.prepareStatement(
-                        "update equipos set tipo = ?, marca = ?, modelo = ?,"
+                Connection cn = Conectar.conectar();
+                PreparedStatement ps = cn.prepareStatement("update equipos set tipo = ?, marca = ?, modelo = ?,"
                         + " serie = ?, observaciones = ?, ultimo = ?,"
                         + " estatus = ?, comentariosTecnicos = ?, ultimaFecha = ?"
-                        + " where id = '"+id+"'");
-                
+                        + " where id = '" + id + "'");
+
                 ps.setString(1, tipot);
                 ps.setString(2, marcat);
                 ps.setString(3, modelos);
@@ -402,22 +429,20 @@ public class InformacionEquipos extends javax.swing.JPanel {
                 ps.setString(7, estatus);
                 ps.setString(8, comentarios);
                 ps.setString(9, Fechas.fechaDiaMesAñoHora(1));
-                
+
                 int resultado = ps.executeUpdate();
-                
-                if(resultado>0){
-                   JOptionPane.showMessageDialog(null, "Actualizado"); 
+
+                if (resultado > 0) {
+                    JOptionPane.showMessageDialog(null, "Actualizado");
                 }
-                
+
                 cn.close();
                 ps.close();
-                
-                
 
             } catch (HeadlessException | SQLException e) {
-                System.out.println("Error en Actualizar Infromacion del Equipo: "+ e);
+                System.out.println("Error en Actualizar Infromacion del Equipo: " + e);
             }
-            
+
         }
     }//GEN-LAST:event_registrarMousePressed
 
@@ -466,7 +491,7 @@ public class InformacionEquipos extends javax.swing.JPanel {
     // End of variables declaration//GEN-END:variables
 
     private void llenarCombobox() {
-        
+
         try {
             Connection cn = Conectar.conectar();
             PreparedStatement ps = cn.prepareStatement(
@@ -493,5 +518,5 @@ public class InformacionEquipos extends javax.swing.JPanel {
         }
 
     }
-    
+
 }

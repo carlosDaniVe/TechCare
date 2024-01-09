@@ -15,6 +15,7 @@ import javax.swing.JFrame;
 import javax.swing.Timer;
 import ventanas.paneles.GestionDeEquipos;
 import ventanas.paneles.GraficaEstatus;
+import ventanas.paneles.GraficaMarcas;
 import ventanas.paneles.GraficaTipos;
 import ventanas.paneles.PanelPadre2Tecnico;
 
@@ -527,7 +528,7 @@ public class Tecnico extends javax.swing.JFrame {
     }//GEN-LAST:event_graficaMarMouseExited
 
     private void graficaMarMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_graficaMarMousePressed
-        // mostrar grafica de marcas aqui;
+       Mostrar.mostrarPanel(panelPadre, new GraficaMarcas());
     }//GEN-LAST:event_graficaMarMousePressed
 
     private void gestionarEqMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_gestionarEqMouseExited

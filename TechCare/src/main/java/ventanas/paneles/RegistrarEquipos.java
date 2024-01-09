@@ -64,17 +64,6 @@ public class RegistrarEquipos extends javax.swing.JPanel {
 
     }
 
-    private void llenarElementos() {
-        elementos.add(txtModelo);
-        elementos.add(txtNumeroSerie);
-        boxes.add(tipo);
-        boxes.add(marca);
-        boxes.add(null);
-        label.add(alertaTipo);
-        label.add(alertaMarca);
-        label.add(null);
-    }
-
     
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -250,7 +239,7 @@ public class RegistrarEquipos extends javax.swing.JPanel {
     }//GEN-LAST:event_txtNumeroSerieMousePressed
 
     private void registrarMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_registrarMousePressed
-        
+  
         if (Validar.validarEquipos(elementos, boxes, label)) {
             String tipos = (String) tipo.getSelectedItem();
             String marcas = (String) marca.getSelectedItem();
@@ -318,6 +307,17 @@ public class RegistrarEquipos extends javax.swing.JPanel {
     private componentesVisuales.TextFieldRedondeado txtNumeroSerie;
     // End of variables declaration//GEN-END:variables
 
+    private void llenarElementos() {
+        elementos.add(txtModelo);
+        elementos.add(txtNumeroSerie);
+        boxes.add(tipo);
+        boxes.add(marca);
+        boxes.add(null);
+        label.add(alertaTipo);
+        label.add(alertaMarca);
+        label.add(null);
+    }
+    
     private void limpiar() {
         tipo.setSelectedIndex(0);
         marca.setSelectedIndex(0);

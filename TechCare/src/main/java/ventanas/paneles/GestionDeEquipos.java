@@ -39,9 +39,8 @@ public class GestionDeEquipos extends javax.swing.JPanel {
                 int columna = 3;
 
                 if (fila > -1) {
-
                     id = (int) tablaG.getModel().getValueAt(fila, columna);
-                    Mostrar.mostrarPanel(Tecnico.panelPadre, new InformacionEquipos());
+                    Mostrar.mostrarPanel(Tecnico.panelPadre, new InformacionEquipos(id,2));
                 }
             }
         });

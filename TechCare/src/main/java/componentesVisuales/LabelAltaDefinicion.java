@@ -31,8 +31,10 @@ public class LabelAltaDefinicion extends JLabel {
         g2d.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
         g2d.setRenderingHint(RenderingHints.KEY_RENDERING, RenderingHints.VALUE_RENDER_QUALITY);
         super.paintComponent(g2d);
+        
         if (icono != null) {
-            g2d.drawImage(((ImageIcon) icono).getImage(), 0, 0, this.getWidth(), this.getHeight(), this);
+            g2d.drawImage(((ImageIcon) icono).getImage(), 0, 0, this.getWidth(), 
+                    this.getHeight(), this);
             g2d.dispose();
         }
     }
