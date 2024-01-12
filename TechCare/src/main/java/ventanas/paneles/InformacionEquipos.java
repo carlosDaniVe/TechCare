@@ -182,7 +182,7 @@ public class InformacionEquipos extends javax.swing.JPanel {
         tipo.setBackground(new java.awt.Color(255, 255, 255));
         tipo.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
         tipo.setForeground(new java.awt.Color(51, 51, 51));
-        tipo.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Tipo de Equipo", "1" }));
+        tipo.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Tipo de Equipo" }));
         tipo.setFont(new java.awt.Font("Segoe UI", 1, 16)); // NOI18N
         tipo.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mousePressed(java.awt.event.MouseEvent evt) {
@@ -194,7 +194,7 @@ public class InformacionEquipos extends javax.swing.JPanel {
         marca.setBackground(new java.awt.Color(255, 255, 255));
         marca.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
         marca.setForeground(new java.awt.Color(51, 51, 51));
-        marca.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Marca", "1" }));
+        marca.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Marca" }));
         marca.setFont(new java.awt.Font("Segoe UI", 1, 16)); // NOI18N
         marca.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mousePressed(java.awt.event.MouseEvent evt) {
